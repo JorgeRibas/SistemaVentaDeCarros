@@ -4,7 +4,7 @@ public class Carro {
     
     private int idCarro;            //(id local del carro)
     private int idInfoCarro;        //(id local de InfoCarro)
-    private TipoCarro tipoCarro;  //(Puede ser otra lista con todos los tipos de carro existentes, o un valor numerico para cada tipo existente)
+    private TipoCarro tipoCarro;    //(Puede ser otra lista con todos los tipos de carro existentes, o un valor numerico para cada tipo existente)
     private String modelo;          //()
     private int anno;               //()
     private Marca marca;            //(Clase enlistando todas las marcas de carro en el mercado)

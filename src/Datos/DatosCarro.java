@@ -12,12 +12,11 @@ import java.util.List;
 public class DatosCarro extends Conexion{
     
     public void registrar(Carro car) throws Exception{
-        
         try {
             this.abrirCnx();
             PreparedStatement st = this.getCnx().prepareStatement("INSERT INTO carro (carro_idInfoCarro, carro_tipo, carro_modelo,"
                     + "carro_anno, carro_marca, carro_precioBase, carro_color, carro_vin, carro_estado)"
-                    + "values (?,?,?,?,?,?,?,?,?,)");
+                    + "values (?,?,?,?,?,?,?,?,?)");
             st.setInt   (1, car.getIdInfoCarro());
             st.setObject(2, car.getTipoCarro());
             st.setString(3, car.getModelo());
@@ -48,18 +47,18 @@ public class DatosCarro extends Conexion{
             
             while (rs.next()) {
                 carro = new Carro();
-                car.setIdCarro(rs.getInt("carro_id"));
-                car.setIdInfoCarro(rs.getInt("carro_idInfoCarro"));
-                //car.setTipoCarro(rs.getObject("carro_tipoCarro").toString);
-                car.setTipoCarro(TipoCarro.LUXURY_CAR);
-                car.setModelo(rs.getString("carro_modelo"));
-                car.setAnno(rs.getInt("carro_anno"));
-                car.setMarca(Marca.PORSCHE);
-                //car.setMarca(rs.getObject("carro_marca", car.getMarca());
-                car.setPrecioBase(rs.getFloat("carro_precioBase"));
-                car.setColor(rs.getString("carro_color"));
-                car.setVin(rs.getString("carro_vin"));
-                car.setEstado(rs.getBoolean("carro_estado"));
+                carro.setIdCarro(rs.getInt("carro_id"));
+                carro.setIdInfoCarro(rs.getInt("carro_idInfoCarro"));
+                //carro.setTipoCarro(rs.getObject("carro_tipoCarro").toString);
+                carro.setTipoCarro(TipoCarro.LUXURY_CAR);
+                carro.setModelo(rs.getString("carro_modelo"));
+                carro.setAnno(rs.getInt("carro_anno"));
+                carro.setMarca(Marca.PORSCHE);
+                //carro.setMarca(rs.getObject("carro_marca", car.getMarca());
+                carro.setPrecioBase(rs.getFloat("carro_precioBase"));
+                carro.setColor(rs.getString("carro_color"));
+                carro.setVin(rs.getString("carro_vin"));
+                carro.setEstado(rs.getBoolean("carro_estado"));
             }
             
         } catch (Exception e) {

@@ -3,26 +3,46 @@ package Modelo;
 public class Compra {
     
     private int idCompra;
-    private Carro idCarro;              //()
-    private Tienda idTienda;            //()
-    private Usuario idUsuario;          //()
+    private int idCarro;                //()
+    private int idTienda;               //()
+    private int idUsuario;              //()
     private String detalleCompra;       //()
     private String nombreCliente;       //()
     private String correoCliente;       //()
     private int telefonoCliente;        //()
-    private String cedulaCliente;       //(Verificaciones de cedula. Pasaporte, cedula, o residencia)
+    private int cedulaCliente;          //(Verificaciones de cedula. Pasaporte, cedula, o residencia)
 
     
     public int getIdCompra() {
         return idCompra;
     }
 
-    public Tienda getIdTienda() {
+    public void setIdCompra(int idCompra) {
+        this.idCompra = idCompra;
+    }
+
+    public int getIdCarro() {
+        return idCarro;
+    }
+
+    public void setIdCarro(int idCarro) {
+        this.idCarro = idCarro;
+    }
+
+    public int getIdTienda() {
         return idTienda;
     }
 
-    public void setIdTienda(Tienda idTienda) {
+    public void setIdTienda(int idTienda) {
         this.idTienda = idTienda;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getDetalleCompra() {
@@ -31,26 +51,6 @@ public class Compra {
 
     public void setDetalleCompra(String detalleCompra) {
         this.detalleCompra = detalleCompra;
-    }
-
-    public void setIdCompra(int idCompra) {
-        this.idCompra = idCompra;
-    }
-
-    public Carro getIdCarro() {
-        return idCarro;
-    }
-
-    public void setIdCarro(Carro idCarro) {
-        this.idCarro = idCarro;
-    }
-
-    public Usuario getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getNombreCliente() {
@@ -77,13 +77,12 @@ public class Compra {
         this.telefonoCliente = telefonoCliente;
     }
 
-    public String getCedulaCliente() {
+    public int getCedulaCliente() {
         return cedulaCliente;
     }
 
-    public void setCedulaCliente(String cedulaCliente) {
+    public void setCedulaCliente(int cedulaCliente) {
         this.cedulaCliente = cedulaCliente;
     }
 
-    
 }

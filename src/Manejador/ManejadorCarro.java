@@ -9,7 +9,7 @@ public class ManejadorCarro {
     private Carro carro = new Carro();
     private List<Carro> lstCarro;
     private String accion;
-//    private UploadedFile file;
+
     
     public String getAccion() {
         return accion;

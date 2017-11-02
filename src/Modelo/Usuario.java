@@ -6,10 +6,10 @@ public class Usuario {
     private boolean rol;                //(true = administrador, false = vendedor)
     private Tienda idTienda;            //()
     private String nombre;              //()
-    private String apellido;           //()
+    private String apellido;            //()
     private String cedula;              //(Verificaciones de cedula. Pasaporte, cedula, o residencia)
     private String nombreLogin;         //(Con el mismo formato para todos, jribas, dcolumna, avargas, emora, emora... asignarlo automaticamente?? )
-    private String contrasena;            //()
+    private String contrasena;          //()
 
     public int getIdUsuario() {
         return idUsuario;
