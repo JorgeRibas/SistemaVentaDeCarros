@@ -84,9 +84,9 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton1" max="32767" attributes="0"/>
-                  <Component id="jButton2" max="32767" attributes="0"/>
-                  <Component id="jButton3" pref="275" max="32767" attributes="0"/>
+                  <Component id="btnAgregarCarro" max="32767" attributes="0"/>
+                  <Component id="btnEditarCarro" max="32767" attributes="0"/>
+                  <Component id="btnEliminarCarro" pref="275" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="350" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -105,17 +105,17 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="btnAgregarCarro" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="jButton4" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="btnEditarCarro" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="jButton5" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="btnEliminarCarro" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   <Component id="jButton6" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="192" max="32767" attributes="0"/>
@@ -147,15 +147,18 @@
         <Property name="text" type="java.lang.String" value="Carro"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnAgregarCarro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Agregar Carro"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarCarroActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnEditarCarro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="1"/>
@@ -163,7 +166,7 @@
         <Property name="text" type="java.lang.String" value="Editar Carro"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnEliminarCarro">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="14" style="1"/>

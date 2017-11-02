@@ -2,15 +2,16 @@ package Modelo;
 
 public class Carro {
     
-    private int idCarro;            //(id Local del carro)
-    private int idtipoCarro;        //(Puede ser otra lista con todos los tipos de carro existentes, o un valor numerico para cada tipo existente)
+    private int idCarro;            //(id local del carro)
+    private int idInfoCarro;        //(id local de InfoCarro)
+    private TipoCarro tipoCarro;  //(Puede ser otra lista con todos los tipos de carro existentes, o un valor numerico para cada tipo existente)
     private String modelo;          //()
     private int anno;               //()
     private Marca marca;            //(Clase enlistando todas las marcas de carro en el mercado)
     private float precioBase;       //()
     private String color;           //()
     private String vin;             //(id Mundial del carro)
-    private boolean estadoCarro;    //(true = nuevo, false = usado) 
+    private boolean estado;         //(true = nuevo, false = usado) 
 
     public int getIdCarro() {
         return idCarro;
@@ -20,20 +21,28 @@ public class Carro {
         this.idCarro = idCarro;
     }
 
+    public int getIdInfoCarro() {
+        return idInfoCarro;
+    }
+
+    public void setIdInfoCarro(int idInfoCarro) {
+        this.idInfoCarro = idInfoCarro;
+    }
+
+    public TipoCarro getTipoCarro() {
+        return tipoCarro;
+    }
+
+    public void setTipoCarro(TipoCarro tipoCarro) {
+        this.tipoCarro = tipoCarro;
+    }
+    
     public String getVin() {
         return vin;
     }
 
     public void setVin(String vin) {
         this.vin = vin;
-    }
-    
-    public int getIdtipoCarro() {
-        return idtipoCarro;
-    }
-
-    public void setIdtipoCarro(int idtipoCarro) {
-        this.idtipoCarro = idtipoCarro;
     }
 
     public String getColor() {
@@ -76,12 +85,12 @@ public class Carro {
         this.precioBase = precioBase;
     }
 
-    public boolean isEstadoCarro() {
-        return estadoCarro;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setEstadoCarro(boolean estadoCarro) {
-        this.estadoCarro = estadoCarro;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
     
     

@@ -51,18 +51,19 @@ public class ManejadorCarro {
         }
     }
     
-    private void limpiar(){
-        this.carro.setIdtipoCarro(0);
+    public void limpiar(){
+        this.carro.setIdInfoCarro(0);
+        this.carro.setTipoCarro(null);
         this.carro.setModelo("");
         this.carro.setAnno(0);
         this.carro.setMarca(null);
         this.carro.setPrecioBase(0);
         this.carro.setColor("");
         this.carro.setVin("");
-        this.carro.setEstadoCarro(true);
+        this.carro.setEstado(true);
     }
     
-    private void registrar() throws Exception{
+    public void registrar() throws Exception{
         
         DatosCarro dao;
         
@@ -76,7 +77,7 @@ public class ManejadorCarro {
         }
     }
     
-    private void modificar() throws Exception{
+    public void modificar() throws Exception{
         
         DatosCarro dao;
         
