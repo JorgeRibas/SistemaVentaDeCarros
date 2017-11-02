@@ -51,9 +51,8 @@ public class ManejadorCarroPorTienda {
     }
     
     public void limpiar(){
-        this.carroT.setIdCxT(0);
-        this.carroT.setIdCarro(0);
         this.carroT.setIdTienda(0);
+        this.carroT.setIdCarro(0);
     }
     
     public void registrar() throws Exception{

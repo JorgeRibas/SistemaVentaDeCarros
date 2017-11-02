@@ -2,18 +2,9 @@ package Modelo;
 
 public class CarroPorTienda{
     
-    private int idCxT;
-    private int idCarro;
     private int idTienda;
-
-    public int getIdCxT() {
-        return idCxT;
-    }
-
-    public void setIdCxT(int idCxT) {
-        this.idCxT = idCxT;
-    }
-    
+    private int idCarro;
+  
     public int getIdCarro() {
         return idCarro;
     }

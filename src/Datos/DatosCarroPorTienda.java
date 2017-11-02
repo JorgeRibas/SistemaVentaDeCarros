@@ -12,12 +12,11 @@ public class DatosCarroPorTienda extends Conexion{
     public void registrar(CarroPorTienda car) throws Exception{
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("INSERT INTO carroportienda (carroTienda_id, " 
-                    + "carroTienda_idCarro, carroTienda_idTienda)"
+            PreparedStatement st = this.getCnx().prepareStatement("INSERT INTO carroportienda (carroTienda_idCarro, " 
+                    + "carroTienda_idTienda)"
                     + "values (?,?)");
-            st.setInt (1, car.getIdCxT());
+            st.setInt (1, car.getIdTienda());
             st.setInt (2, car.getIdCarro());
-            st.setInt (3, car.getIdTienda());
             
             st.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
@@ -33,15 +32,14 @@ public class DatosCarroPorTienda extends Conexion{
         ResultSet rs;
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("SELECT * FROM carroportienda WHERE carroTienda_id = ?");
+            PreparedStatement st = this.getCnx().prepareStatement("SELECT * FROM carroportienda WHERE carroTienda_idTienda = ?");
             st.setInt(1, car.getIdCarro());
             rs = st.executeQuery();
             
             while (rs.next()) {
                 carroT = new CarroPorTienda();
-                carroT.setIdCxT(rs.getInt("carroTienda_id"));
-                carroT.setIdCarro(rs.getInt("carroTienda_idCarro"));
                 carroT.setIdTienda(rs.getInt("carroTienda_idTienda"));
+                carroT.setIdCarro(rs.getInt("carroTienda_idCarro"));
             }
             
         } catch (Exception e) {
@@ -66,9 +64,8 @@ public class DatosCarroPorTienda extends Conexion{
             
             while(rs.next()){
                 CarroPorTienda carT = new CarroPorTienda();
-                carT.setIdCxT(rs.getInt("carroTienda_id"));
-                carT.setIdCarro(rs.getInt("carroTienda_idCarro"));
                 carT.setIdTienda(rs.getInt("carroTienda_idTienda"));
+                carT.setIdCarro(rs.getInt("carroTienda_idCarro"));
                 
                 
                 lista.add(carT);
@@ -84,10 +81,9 @@ public class DatosCarroPorTienda extends Conexion{
     public void modificar(CarroPorTienda carT) throws Exception{
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("UPDATE carroportienda SET carroTienda_id = ?, carroTienda_idCarro = ?, carroTienda_idTienda = ?");
-            st.setInt (1, carT.getIdCxT());
+            PreparedStatement st = this.getCnx().prepareStatement("UPDATE carroportienda SET carroTienda_idTienda = ?, carroTienda_idCarro = ?");
+            st.setInt (1, carT.getIdTienda());
             st.setInt (2, carT.getIdCarro());
-            st.setInt (3, carT.getIdTienda());
             
             st.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
@@ -100,7 +96,7 @@ public class DatosCarroPorTienda extends Conexion{
     public void eliminarID(CarroPorTienda carT) throws Exception{
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("DELETE FROM carroportienda WHERE carroTienda_id = ?");
+            PreparedStatement st = this.getCnx().prepareStatement("DELETE FROM carroportienda WHERE carroTienda_idTienda = ?");
             st.setInt(1, carT.getIdCarro());
             
             st.executeUpdate();

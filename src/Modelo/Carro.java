@@ -1,6 +1,6 @@
 package Modelo;
 
-public class Carro {
+public class Carro{
     
     private int idCarro;            //(id local del carro)
     private int idInfoCarro;        //(id local de InfoCarro)
@@ -29,8 +29,8 @@ public class Carro {
         this.idInfoCarro = idInfoCarro;
     }
 
-    public TipoCarro getTipoCarro() {
-        return tipoCarro;
+    public String getTipoCarro() {
+        return tipoCarro.getTipoCarro();
     }
 
     public void setTipoCarro(TipoCarro tipoCarro) {
@@ -69,8 +69,8 @@ public class Carro {
         this.anno = anno;
     }
 
-    public Marca getMarca() {
-        return marca;
+    public String getMarca() {
+        return marca.getMarca();
     }
 
     public void setMarca(Marca marca) {

@@ -18,10 +18,10 @@ public class DatosCarro extends Conexion{
                     + "carro_anno, carro_marca, carro_precioBase, carro_color, carro_vin, carro_estado)"
                     + "values (?,?,?,?,?,?,?,?,?)");
             st.setInt   (1, car.getIdInfoCarro());
-            st.setObject(2, car.getTipoCarro());
+            st.setString(2, car.getTipoCarro());
             st.setString(3, car.getModelo());
             st.setInt   (4, car.getAnno());
-            st.setObject(5, car.getMarca());
+            st.setString(5, car.getMarca());
             st.setFloat (6, car.getPrecioBase());
             st.setString(7, car.getColor());
             st.setString(8, car.getVin());
@@ -49,12 +49,10 @@ public class DatosCarro extends Conexion{
                 carro = new Carro();
                 carro.setIdCarro(rs.getInt("carro_id"));
                 carro.setIdInfoCarro(rs.getInt("carro_idInfoCarro"));
-                //carro.setTipoCarro(rs.getObject("carro_tipoCarro").toString);
-                carro.setTipoCarro(TipoCarro.LUXURY_CAR);
+                carro.setTipoCarro((TipoCarro) rs.getObject("carro_tipo"));
                 carro.setModelo(rs.getString("carro_modelo"));
                 carro.setAnno(rs.getInt("carro_anno"));
-                carro.setMarca(Marca.PORSCHE);
-                //carro.setMarca(rs.getObject("carro_marca", car.getMarca());
+                carro.setMarca((Marca) rs.getObject("carro_marca"));
                 carro.setPrecioBase(rs.getFloat("carro_precioBase"));
                 carro.setColor(rs.getString("carro_color"));
                 carro.setVin(rs.getString("carro_vin"));
@@ -85,12 +83,10 @@ public class DatosCarro extends Conexion{
                 Carro car = new Carro();
                 car.setIdCarro(rs.getInt("carro_id"));
                 car.setIdInfoCarro(rs.getInt("carro_idInfoCarro"));
-                //car.setidTipoCarro(rs.getObject("carro_tipoCarro", TipoCarro))
-                car.setTipoCarro(TipoCarro.LUXURY_CAR);
+                car.setTipoCarro((TipoCarro) rs.getObject("carro_tipo"));
                 car.setModelo(rs.getString("carro_modelo"));
                 car.setAnno(rs.getInt("carro_anno"));
-                car.setMarca(Marca.PORSCHE);
-                //car.setMarca(rs.getObject("carro_marca", car.getMarca());
+                car.setMarca((Marca) rs.getObject("carro_marca"));
                 car.setPrecioBase(rs.getFloat("carro_precioBase"));
                 car.setColor(rs.getString("carro_color"));
                 car.setVin(rs.getString("carro_vin"));
@@ -112,14 +108,14 @@ public class DatosCarro extends Conexion{
             PreparedStatement st = this.getCnx().prepareStatement("UPDATE carro SET carro_idInfoCarro = ?, carro_tipo = ?, carro_modelo = ?, carro_anno = ?, carro_marca = ?, carro_precioBase = ?, "
                             + "carro_color = ?, carro_vin = ?, carro_estado = ?");
             st.setInt   (1, car.getIdInfoCarro());
-            st.setString(2, car.getTipoCarro().toString());
-            st.setString(2, car.getModelo());
-            st.setInt   (3, car.getAnno());
-            st.setString(4, car.getMarca().toString());
-            st.setFloat (5, car.getPrecioBase());
-            st.setString(6, car.getColor());
-            st.setString(7, car.getVin());
-            st.setString(8, car.getModelo());
+            st.setString(2, car.getTipoCarro());
+            st.setString(3, car.getModelo());
+            st.setInt   (4, car.getAnno());
+            st.setString(5, car.getMarca());
+            st.setFloat (6, car.getPrecioBase());
+            st.setString(7, car.getColor());
+            st.setString(8, car.getVin());
+            st.setString(9, car.getModelo());
             
             st.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
