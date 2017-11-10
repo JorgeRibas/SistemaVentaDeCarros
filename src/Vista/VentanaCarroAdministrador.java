@@ -7,10 +7,6 @@ package Vista;
 
 import Vista.VentanaIngresarAdministrador;
 import Vista.VentanaPrincipal;
-import frames.VentanaAgregarCarroAdministrador;
-import frames.VentanaAgregarIdiomaAdministrador;
-import frames.VentanaAgregarTiendaAdministrador;
-import frames.VentanaAgregarUsuarioAdministrador;
 import frames.VentanaCambiarDeIdiomaAdministrador;
 import frames.VentanaConfiguracionDeLaCuentaAdministrador;
 import frames.VentanaEditarCarroAdministrador;
@@ -22,7 +18,6 @@ import frames.VentanaEliminarUsuarioAdministrador;
 import frames.VentanaModificarUsuarioAdministrador;
 import frames.VentanaMoverCarroAdministrador;
 import frames.VentanaVerCarrosAdministrador;
-import frames.VentanaVerCarrosPorTiendaAdministrador;
 import frames.VentanaVerEspaciosLibresAdministrador;
 import frames.VentanaVerTiendasAdministrador;
 import frames.VentanaVerUsuariosAdministrador;

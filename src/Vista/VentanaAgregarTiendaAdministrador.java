@@ -4,15 +4,25 @@
  * and open the template in the editor.
  */
 
-package frames;
+package Vista;
 
-import Vista.VentanaVerCarrosPorTiendaAdministrador;
-import Vista.VentanaAgregarIdiomaAdministrador;
-import Vista.VentanaAgregarUsuarioAdministrador;
-import Vista.VentanaAgregarTiendaAdministrador;
 import Vista.VentanaAgregarCarroAdministrador;
-import Vista.VentanaCarroAdministrador;
+import Vista.VentanaTiendaAdministrador;
 import Vista.VentanaPrincipal;
+import frames.VentanaCambiarDeIdiomaAdministrador;
+import frames.VentanaConfiguracionDeLaCuentaAdministrador;
+import frames.VentanaEditarCarroAdministrador;
+import frames.VentanaEditarTiendaAdministrador;
+import frames.VentanaEliminarCarroAdministrador;
+import frames.VentanaEliminarIdiomaAdministrador;
+import frames.VentanaEliminarTiendaAdministrador;
+import frames.VentanaEliminarUsuarioAdministrador;
+import frames.VentanaModificarUsuarioAdministrador;
+import frames.VentanaMoverCarroAdministrador;
+import frames.VentanaVerCarrosAdministrador;
+import frames.VentanaVerEspaciosLibresAdministrador;
+import frames.VentanaVerTiendasAdministrador;
+import frames.VentanaVerUsuariosAdministrador;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
@@ -25,12 +35,13 @@ import javax.swing.JPanel;
  *
  * @author dannycolumna
  */
-public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
+public class VentanaAgregarTiendaAdministrador extends javax.swing.JFrame {
 
-    /** Creates new form VentanaEliminarCarroAdministrador */
-    public VentanaEliminarCarroAdministrador() {
+    /** Creates new form VentanaAgregarTiendaAdministrador */
+    public VentanaAgregarTiendaAdministrador() {
         initComponents();
         this.ImagenComoFondo();
+        this.LabelNoVisible();
     }
 
     /** This method is called from within the constructor to
@@ -43,6 +54,23 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         btnAnterior = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNombreDeLaTienda = new javax.swing.JFormattedTextField();
+        txtLocalizacionPorProvincia = new javax.swing.JFormattedTextField();
+        txtLocalizacionPorCanton = new javax.swing.JFormattedTextField();
+        txtCodigoPostalDeLaUbicacion = new javax.swing.JFormattedTextField();
+        txtEspaciosDisponiblesParaCarros = new javax.swing.JFormattedTextField();
+        lblMensajeNombreDeLaTienda = new javax.swing.JLabel();
+        lblMensajeLocalizacionPorProvincia = new javax.swing.JLabel();
+        lblMensajeLocalizacionPorCanton = new javax.swing.JLabel();
+        lblMensajeCodigoPostalDeLaUbicacion = new javax.swing.JLabel();
+        lblMensajeEspaciosDisponiblesParaCarros = new javax.swing.JLabel();
+        btnAgregarTienda = new javax.swing.JButton();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -81,6 +109,58 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Agregar tienda");
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre de la tienda:");
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Localización por provincia:");
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Localización por cantón");
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Código postal de la ubicación:");
+
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Espacios disponibles para carros:");
+
+        lblMensajeNombreDeLaTienda.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeNombreDeLaTienda.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeNombreDeLaTienda.setText("Mensaje de error");
+
+        lblMensajeLocalizacionPorProvincia.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeLocalizacionPorProvincia.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeLocalizacionPorProvincia.setText("Mensaje de error");
+
+        lblMensajeLocalizacionPorCanton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeLocalizacionPorCanton.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeLocalizacionPorCanton.setText("Mensaje de error");
+
+        lblMensajeCodigoPostalDeLaUbicacion.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeCodigoPostalDeLaUbicacion.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeCodigoPostalDeLaUbicacion.setText("Mensaje de error");
+
+        lblMensajeEspaciosDisponiblesParaCarros.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeEspaciosDisponiblesParaCarros.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeEspaciosDisponiblesParaCarros.setText("Mensaje de error");
+
+        btnAgregarTienda.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnAgregarTienda.setText("Agregar tienda");
+        btnAgregarTienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTiendaActionPerformed(evt);
             }
         });
 
@@ -315,13 +395,89 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnAnterior)
-                .addGap(0, 1242, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAgregarTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(514, 514, 514)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtNombreDeLaTienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                                    .addComponent(txtLocalizacionPorProvincia, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtLocalizacionPorCanton, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(64, 64, 64)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtCodigoPostalDeLaUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtEspaciosDisponiblesParaCarros)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(323, 323, 323)
+                                        .addComponent(lblMensajeCodigoPostalDeLaUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(317, 317, 317)
+                                        .addComponent(lblMensajeEspaciosDisponiblesParaCarros, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMensajeNombreDeLaTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMensajeLocalizacionPorProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMensajeLocalizacionPorCanton, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 715, Short.MAX_VALUE)
-                .addComponent(btnAnterior))
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addComponent(txtNombreDeLaTienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoPostalDeLaUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMensajeNombreDeLaTienda)
+                    .addComponent(lblMensajeCodigoPostalDeLaUbicacion))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6)
+                    .addComponent(txtLocalizacionPorProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEspaciosDisponiblesParaCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMensajeLocalizacionPorProvincia)
+                    .addComponent(lblMensajeEspaciosDisponiblesParaCarros))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtLocalizacionPorCanton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMensajeLocalizacionPorCanton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnterior, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAgregarTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))))
         );
 
         pack();
@@ -329,8 +485,8 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         // TODO add your handling code here:
-        VentanaCarroAdministrador ventanaCarroAdministrador = new VentanaCarroAdministrador();
-        ventanaCarroAdministrador.setVisible(true);
+        VentanaTiendaAdministrador ventanaTiendaAdministrador = new VentanaTiendaAdministrador();
+        ventanaTiendaAdministrador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -492,6 +648,11 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuConfiguracionMouseClicked
 
+    private void btnAgregarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTiendaActionPerformed
+        // TODO add your handling code here:
+        this.AgregarTienda();
+    }//GEN-LAST:event_btnAgregarTiendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -509,31 +670,43 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaEliminarCarroAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarTiendaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaEliminarCarroAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarTiendaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaEliminarCarroAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarTiendaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaEliminarCarroAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaAgregarTiendaAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaEliminarCarroAdministrador().setVisible(true);
+                new VentanaAgregarTiendaAdministrador().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarTienda;
     private javax.swing.JButton btnAnterior;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JLabel lblMensajeCodigoPostalDeLaUbicacion;
+    private javax.swing.JLabel lblMensajeEspaciosDisponiblesParaCarros;
+    private javax.swing.JLabel lblMensajeLocalizacionPorCanton;
+    private javax.swing.JLabel lblMensajeLocalizacionPorProvincia;
+    private javax.swing.JLabel lblMensajeNombreDeLaTienda;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -559,9 +732,13 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuTienda;
     private javax.swing.JMenu menuUsuario;
     private javax.swing.JMenuItem munuItemAgregarCarro;
+    private javax.swing.JFormattedTextField txtCodigoPostalDeLaUbicacion;
+    private javax.swing.JFormattedTextField txtEspaciosDisponiblesParaCarros;
+    private javax.swing.JFormattedTextField txtLocalizacionPorCanton;
+    private javax.swing.JFormattedTextField txtLocalizacionPorProvincia;
+    private javax.swing.JFormattedTextField txtNombreDeLaTienda;
     // End of variables declaration//GEN-END:variables
 
-    
     public void ImagenComoFondo() { // 6 Líneas de Código 
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/imagenes/ImagenFondo.jpg"));
@@ -591,5 +768,56 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
         minutos = calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
+    }
+    
+    public void LabelNoVisible(){ // 5 Línes de Código
+        lblMensajeCodigoPostalDeLaUbicacion.setVisible(false);
+        lblMensajeEspaciosDisponiblesParaCarros.setVisible(false);
+        lblMensajeLocalizacionPorCanton.setVisible(false);
+        lblMensajeLocalizacionPorProvincia.setVisible(false);
+        lblMensajeNombreDeLaTienda.setVisible(false);
+    }
+    
+    public void CamposVacios(){ // 25 Lineas de codigo
+        if (txtNombreDeLaTienda.getText().isEmpty()) {
+            lblMensajeNombreDeLaTienda.setVisible(true);
+            lblMensajeNombreDeLaTienda.setText("Campo es vacio");
+        }else{
+            lblMensajeNombreDeLaTienda.setVisible(false);
+        }
+        if (txtLocalizacionPorProvincia.getText().isEmpty()) {
+            lblMensajeLocalizacionPorProvincia.setVisible(true);
+            lblMensajeLocalizacionPorProvincia.setText("Campo es vacio");
+        }else{
+            lblMensajeLocalizacionPorProvincia.setVisible(false);
+        }
+        if(txtLocalizacionPorCanton.getText().isEmpty()){
+            lblMensajeLocalizacionPorCanton.setVisible(true);
+            lblMensajeLocalizacionPorCanton.setText("Campo es vacio");
+        }else{
+            lblMensajeLocalizacionPorCanton.setVisible(false);
+        }
+        if(txtCodigoPostalDeLaUbicacion.getText().isEmpty()){
+            lblMensajeCodigoPostalDeLaUbicacion.setVisible(true);
+            lblMensajeCodigoPostalDeLaUbicacion.setText("Campo es vacio");
+        }else{
+            lblMensajeCodigoPostalDeLaUbicacion.setVisible(false);
+        }
+        if(txtEspaciosDisponiblesParaCarros.getText().isEmpty()){
+            lblMensajeEspaciosDisponiblesParaCarros.setVisible(true);
+            lblMensajeEspaciosDisponiblesParaCarros.setText("Campo es vacio");
+        }else{
+            lblMensajeEspaciosDisponiblesParaCarros.setVisible(false);
+        }
+    }
+    
+    public void AgregarTienda(){ // 6 Lineas de codigo
+        if(!txtNombreDeLaTienda.getText().isEmpty() && !txtLocalizacionPorProvincia.getText().isEmpty() && !txtLocalizacionPorCanton.getText().isEmpty() && !txtCodigoPostalDeLaUbicacion.getText().isEmpty() && !txtEspaciosDisponiblesParaCarros.getText().isEmpty()){
+            VentanaIngresarAdministrador ventanaIngresarAdministrador = new VentanaIngresarAdministrador();
+            ventanaIngresarAdministrador.setVisible(true);
+            this.dispose();
+        }else{
+            this.CamposVacios();
+        }
     }
 }
