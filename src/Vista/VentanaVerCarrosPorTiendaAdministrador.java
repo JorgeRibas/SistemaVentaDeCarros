@@ -5,12 +5,12 @@
  */
 package Vista;
 
-import Vista.VentanaAgregarIdiomaAdministrador;
-import Vista.VentanaAgregarUsuarioAdministrador;
-import Vista.VentanaAgregarTiendaAdministrador;
-import Vista.VentanaAgregarCarroAdministrador;
-import Vista.VentanaCarroAdministrador;
-import Vista.VentanaPrincipal;
+//import Vista.VentanaAgregarIdiomaAdministrador;
+//import Vista.VentanaAgregarUsuarioAdministrador;
+//import Vista.VentanaAgregarTiendaAdministrador;
+//import Vista.VentanaAgregarCarroAdministrador;
+//import Vista.VentanaCarroAdministrador;
+//import Vista.VentanaPrincipal;
 import frames.VentanaCambiarDeIdiomaAdministrador;
 import frames.VentanaConfiguracionDeLaCuentaAdministrador;
 import frames.VentanaEditarCarroAdministrador;

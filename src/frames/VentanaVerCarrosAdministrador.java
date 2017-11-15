@@ -5,13 +5,6 @@
  */
 package frames;
 
-import Vista.VentanaVerCarrosPorTiendaAdministrador;
-import Vista.VentanaAgregarIdiomaAdministrador;
-import Vista.VentanaAgregarUsuarioAdministrador;
-import Vista.VentanaAgregarTiendaAdministrador;
-import Vista.VentanaAgregarCarroAdministrador;
-import Vista.VentanaCarroAdministrador;
-import Vista.VentanaPrincipal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
@@ -52,28 +45,9 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         menuCarro = new javax.swing.JMenu();
-        munuItemAgregarCarro = new javax.swing.JMenuItem();
-        menuItemEditarCarro = new javax.swing.JMenuItem();
-        menuItemEliminarCarro = new javax.swing.JMenuItem();
-        menuItemMoverCarro = new javax.swing.JMenuItem();
-        menuItemVerCarrosPorTienda = new javax.swing.JMenuItem();
-        menuItemVerCarros = new javax.swing.JMenuItem();
         menuUsuario = new javax.swing.JMenu();
-        menuItemAgregarUsuario = new javax.swing.JMenuItem();
-        menuItemEliminarUsuario = new javax.swing.JMenuItem();
-        menuItemModificarUsuario = new javax.swing.JMenuItem();
-        menuItemVerUsuarios = new javax.swing.JMenuItem();
         menuTienda = new javax.swing.JMenu();
-        menuItemAgregarTienda = new javax.swing.JMenuItem();
-        menuItemEditarTienda = new javax.swing.JMenuItem();
-        menuItemEliminarTienda = new javax.swing.JMenuItem();
-        menuItemVerTiendas = new javax.swing.JMenuItem();
-        menuItemVerEspaciosLibres = new javax.swing.JMenuItem();
         menuConfiguracion = new javax.swing.JMenu();
-        menuItemAgregarIdioma = new javax.swing.JMenuItem();
-        menuItemEliminarIdioma = new javax.swing.JMenuItem();
-        menuItemCambiarDeIdioma = new javax.swing.JMenuItem();
-        menuItemConfiguracionDeLaCuenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,55 +97,6 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
                 menuCarroMouseClicked(evt);
             }
         });
-
-        munuItemAgregarCarro.setText("Agregar carro");
-        munuItemAgregarCarro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                munuItemAgregarCarroActionPerformed(evt);
-            }
-        });
-        menuCarro.add(munuItemAgregarCarro);
-
-        menuItemEditarCarro.setText("Editar carro");
-        menuItemEditarCarro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEditarCarroActionPerformed(evt);
-            }
-        });
-        menuCarro.add(menuItemEditarCarro);
-
-        menuItemEliminarCarro.setText("Eliminar carro");
-        menuItemEliminarCarro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEliminarCarroActionPerformed(evt);
-            }
-        });
-        menuCarro.add(menuItemEliminarCarro);
-
-        menuItemMoverCarro.setText("Mover carro");
-        menuItemMoverCarro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemMoverCarroActionPerformed(evt);
-            }
-        });
-        menuCarro.add(menuItemMoverCarro);
-
-        menuItemVerCarrosPorTienda.setText("Ver carros por tienda");
-        menuItemVerCarrosPorTienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVerCarrosPorTiendaActionPerformed(evt);
-            }
-        });
-        menuCarro.add(menuItemVerCarrosPorTienda);
-
-        menuItemVerCarros.setText("Ver carros");
-        menuItemVerCarros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVerCarrosActionPerformed(evt);
-            }
-        });
-        menuCarro.add(menuItemVerCarros);
-
         jMenuBar3.add(menuCarro);
 
         menuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonUsuario2.png"))); // NOI18N
@@ -181,39 +106,6 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
                 menuUsuarioMouseClicked(evt);
             }
         });
-
-        menuItemAgregarUsuario.setText("Agregar usuario");
-        menuItemAgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemAgregarUsuarioActionPerformed(evt);
-            }
-        });
-        menuUsuario.add(menuItemAgregarUsuario);
-
-        menuItemEliminarUsuario.setText("Eliminar usuario");
-        menuItemEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEliminarUsuarioActionPerformed(evt);
-            }
-        });
-        menuUsuario.add(menuItemEliminarUsuario);
-
-        menuItemModificarUsuario.setText("Modificar usuario");
-        menuItemModificarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemModificarUsuarioActionPerformed(evt);
-            }
-        });
-        menuUsuario.add(menuItemModificarUsuario);
-
-        menuItemVerUsuarios.setText("Ver usuarios");
-        menuItemVerUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVerUsuariosActionPerformed(evt);
-            }
-        });
-        menuUsuario.add(menuItemVerUsuarios);
-
         jMenuBar3.add(menuUsuario);
 
         menuTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoTienda2.png"))); // NOI18N
@@ -223,47 +115,6 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
                 menuTiendaMouseClicked(evt);
             }
         });
-
-        menuItemAgregarTienda.setText("Agregar tienda");
-        menuItemAgregarTienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemAgregarTiendaActionPerformed(evt);
-            }
-        });
-        menuTienda.add(menuItemAgregarTienda);
-
-        menuItemEditarTienda.setText("Editar tienda");
-        menuItemEditarTienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEditarTiendaActionPerformed(evt);
-            }
-        });
-        menuTienda.add(menuItemEditarTienda);
-
-        menuItemEliminarTienda.setText("Eliminar tienda");
-        menuItemEliminarTienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEliminarTiendaActionPerformed(evt);
-            }
-        });
-        menuTienda.add(menuItemEliminarTienda);
-
-        menuItemVerTiendas.setText("Ver tiendas");
-        menuItemVerTiendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVerTiendasActionPerformed(evt);
-            }
-        });
-        menuTienda.add(menuItemVerTiendas);
-
-        menuItemVerEspaciosLibres.setText("Ver espacios libres");
-        menuItemVerEspaciosLibres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemVerEspaciosLibresActionPerformed(evt);
-            }
-        });
-        menuTienda.add(menuItemVerEspaciosLibres);
-
         jMenuBar3.add(menuTienda);
 
         menuConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoConfiguracion2.png"))); // NOI18N
@@ -273,39 +124,6 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
                 menuConfiguracionMouseClicked(evt);
             }
         });
-
-        menuItemAgregarIdioma.setText("Agregar idioma");
-        menuItemAgregarIdioma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemAgregarIdiomaActionPerformed(evt);
-            }
-        });
-        menuConfiguracion.add(menuItemAgregarIdioma);
-
-        menuItemEliminarIdioma.setText("Eliminar idioma");
-        menuItemEliminarIdioma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemEliminarIdiomaActionPerformed(evt);
-            }
-        });
-        menuConfiguracion.add(menuItemEliminarIdioma);
-
-        menuItemCambiarDeIdioma.setText("Cambiar de idioma");
-        menuItemCambiarDeIdioma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCambiarDeIdiomaActionPerformed(evt);
-            }
-        });
-        menuConfiguracion.add(menuItemCambiarDeIdioma);
-
-        menuItemConfiguracionDeLaCuenta.setText("Configuración de la cuenta");
-        menuItemConfiguracionDeLaCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemConfiguracionDeLaCuentaActionPerformed(evt);
-            }
-        });
-        menuConfiguracion.add(menuItemConfiguracionDeLaCuenta);
-
         jMenuBar3.add(menuConfiguracion);
 
         setJMenuBar(jMenuBar3);
@@ -344,153 +162,32 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuCerrarSesionActionPerformed
 
-    private void munuItemAgregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_munuItemAgregarCarroActionPerformed
-        // TODO add your handling code here:
-        VentanaAgregarCarroAdministrador ventanaAgregarCarroAdministrador = new VentanaAgregarCarroAdministrador();
-        ventanaAgregarCarroAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_munuItemAgregarCarroActionPerformed
-
-    private void menuItemEditarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditarCarroActionPerformed
-        // TODO add your handling code here:
-        VentanaEditarCarroAdministrador ventanaEditarCarroAdministrador = new VentanaEditarCarroAdministrador();
-        ventanaEditarCarroAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemEditarCarroActionPerformed
-
-    private void menuItemEliminarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEliminarCarroActionPerformed
-        // TODO add your handling code here:
-        VentanaEliminarCarroAdministrador ventanaEliminarCarroAdministrador = new VentanaEliminarCarroAdministrador();
-        ventanaEliminarCarroAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemEliminarCarroActionPerformed
-
-    private void menuItemMoverCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemMoverCarroActionPerformed
-        // TODO add your handling code here:
-        VentanaMoverCarroAdministrador ventanaMoverCarroAdministrador = new VentanaMoverCarroAdministrador();
-        ventanaMoverCarroAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemMoverCarroActionPerformed
-
-    private void menuItemVerCarrosPorTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVerCarrosPorTiendaActionPerformed
-        // TODO add your handling code here:
-        VentanaVerCarrosPorTiendaAdministrador ventanaVerCarrosPorTienda = new VentanaVerCarrosPorTiendaAdministrador();
-        ventanaVerCarrosPorTienda.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemVerCarrosPorTiendaActionPerformed
-
-    private void menuItemVerCarrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVerCarrosActionPerformed
-        // TODO add your handling code here:
-        VentanaVerCarrosAdministrador ventanaVerCarrosAdministrador = new VentanaVerCarrosAdministrador();
-        ventanaVerCarrosAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemVerCarrosActionPerformed
-
     private void menuCarroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCarroMouseClicked
         // TODO add your handling code here:
+        VentanaCarroAdministrador ventanaCarroAdministrador = new VentanaCarroAdministrador();
+        ventanaCarroAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_menuCarroMouseClicked
-
-    private void menuItemAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAgregarUsuarioActionPerformed
-        // TODO add your handling code here:
-        VentanaAgregarUsuarioAdministrador ventanaAgregarUsuarioAdministrador = new VentanaAgregarUsuarioAdministrador();
-        ventanaAgregarUsuarioAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemAgregarUsuarioActionPerformed
-
-    private void menuItemEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEliminarUsuarioActionPerformed
-        // TODO add your handling code here:
-        VentanaEliminarUsuarioAdministrador ventanaEliminarUsuarioAdministrador = new VentanaEliminarUsuarioAdministrador();
-        ventanaEliminarUsuarioAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemEliminarUsuarioActionPerformed
-
-    private void menuItemModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemModificarUsuarioActionPerformed
-        // TODO add your handling code here:
-        VentanaModificarUsuarioAdministrador ventanaModificarUsuarioAdministrador = new VentanaModificarUsuarioAdministrador();
-        ventanaModificarUsuarioAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemModificarUsuarioActionPerformed
-
-    private void menuItemVerUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVerUsuariosActionPerformed
-        // TODO add your handling code here:
-        VentanaVerUsuariosAdministrador ventanaVerUsuarioAdministrador = new VentanaVerUsuariosAdministrador();
-        ventanaVerUsuarioAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemVerUsuariosActionPerformed
 
     private void menuUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuUsuarioMouseClicked
         // TODO add your handling code here:
+        VentanaUsuarioAdministrador ventanaUsuarioAdministrador = new VentanaUsuarioAdministrador();
+        ventanaUsuarioAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_menuUsuarioMouseClicked
-
-    private void menuItemAgregarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAgregarTiendaActionPerformed
-        // TODO add your handling code here:
-        VentanaAgregarTiendaAdministrador ventanaAgregarTiendaAdministrador = new VentanaAgregarTiendaAdministrador();
-        ventanaAgregarTiendaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemAgregarTiendaActionPerformed
-
-    private void menuItemEditarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditarTiendaActionPerformed
-        // TODO add your handling code here:
-        VentanaEditarTiendaAdministrador ventanaEditarTiendaAdministrador = new VentanaEditarTiendaAdministrador();
-        ventanaEditarTiendaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemEditarTiendaActionPerformed
-
-    private void menuItemEliminarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEliminarTiendaActionPerformed
-        // TODO add your handling code here:
-        VentanaEliminarTiendaAdministrador ventanaEliminarTiendaAdministrador = new VentanaEliminarTiendaAdministrador();
-        ventanaEliminarTiendaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemEliminarTiendaActionPerformed
-
-    private void menuItemVerTiendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVerTiendasActionPerformed
-        // TODO add your handling code here:
-        VentanaVerTiendasAdministrador ventanaVerTiendasAdministrador = new VentanaVerTiendasAdministrador();
-        ventanaVerTiendasAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemVerTiendasActionPerformed
-
-    private void menuItemVerEspaciosLibresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVerEspaciosLibresActionPerformed
-        // TODO add your handling code here:
-        VentanaVerEspaciosLibresAdministrador ventanaVerEspaciosLibresAdministrador = new VentanaVerEspaciosLibresAdministrador();
-        ventanaVerEspaciosLibresAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemVerEspaciosLibresActionPerformed
 
     private void menuTiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTiendaMouseClicked
         // TODO add your handling code here:
+        VentanaTiendaAdministrador ventanaTiendaAdministrador = new VentanaTiendaAdministrador();
+        ventanaTiendaAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_menuTiendaMouseClicked
-
-    private void menuItemAgregarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAgregarIdiomaActionPerformed
-        // TODO add your handling code here:
-        VentanaAgregarIdiomaAdministrador ventanaAgregarIdiomaAdministrador = new VentanaAgregarIdiomaAdministrador();
-        ventanaAgregarIdiomaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemAgregarIdiomaActionPerformed
-
-    private void menuItemEliminarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEliminarIdiomaActionPerformed
-        // TODO add your handling code here:
-        VentanaEliminarIdiomaAdministrador ventanaEliminarIdiomaAdministrador = new VentanaEliminarIdiomaAdministrador();
-        ventanaEliminarIdiomaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemEliminarIdiomaActionPerformed
-
-    private void menuItemCambiarDeIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCambiarDeIdiomaActionPerformed
-        // TODO add your handling code here:
-        VentanaCambiarDeIdiomaAdministrador ventanaCambiarDeIdiomaAdministrador = new VentanaCambiarDeIdiomaAdministrador();
-        ventanaCambiarDeIdiomaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemCambiarDeIdiomaActionPerformed
-
-    private void menuItemConfiguracionDeLaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemConfiguracionDeLaCuentaActionPerformed
-        // TODO add your handling code here:
-        VentanaConfiguracionDeLaCuentaAdministrador ventanaConfiguracionDeLaCuentaAdministrador = new VentanaConfiguracionDeLaCuentaAdministrador();
-        ventanaConfiguracionDeLaCuentaAdministrador.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_menuItemConfiguracionDeLaCuentaActionPerformed
 
     private void menuConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuConfiguracionMouseClicked
         // TODO add your handling code here:
+        VentanaConfiguracionAdministrador ventanaConfiguracionAdministrador = new VentanaConfiguracionAdministrador();
+        ventanaConfiguracionAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_menuConfiguracionMouseClicked
 
     /**
@@ -539,27 +236,8 @@ public class VentanaVerCarrosAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
     private javax.swing.JMenu menuConfiguracion;
-    private javax.swing.JMenuItem menuItemAgregarIdioma;
-    private javax.swing.JMenuItem menuItemAgregarTienda;
-    private javax.swing.JMenuItem menuItemAgregarUsuario;
-    private javax.swing.JMenuItem menuItemCambiarDeIdioma;
-    private javax.swing.JMenuItem menuItemConfiguracionDeLaCuenta;
-    private javax.swing.JMenuItem menuItemEditarCarro;
-    private javax.swing.JMenuItem menuItemEditarTienda;
-    private javax.swing.JMenuItem menuItemEliminarCarro;
-    private javax.swing.JMenuItem menuItemEliminarIdioma;
-    private javax.swing.JMenuItem menuItemEliminarTienda;
-    private javax.swing.JMenuItem menuItemEliminarUsuario;
-    private javax.swing.JMenuItem menuItemModificarUsuario;
-    private javax.swing.JMenuItem menuItemMoverCarro;
-    private javax.swing.JMenuItem menuItemVerCarros;
-    private javax.swing.JMenuItem menuItemVerCarrosPorTienda;
-    private javax.swing.JMenuItem menuItemVerEspaciosLibres;
-    private javax.swing.JMenuItem menuItemVerTiendas;
-    private javax.swing.JMenuItem menuItemVerUsuarios;
     private javax.swing.JMenu menuTienda;
     private javax.swing.JMenu menuUsuario;
-    private javax.swing.JMenuItem munuItemAgregarCarro;
     // End of variables declaration//GEN-END:variables
 
     public void ImagenComoFondo() { // 6 Líneas de Código 

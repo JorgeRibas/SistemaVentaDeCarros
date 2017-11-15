@@ -20,6 +20,7 @@ import frames.VentanaEliminarUsuarioAdministrador;
 import frames.VentanaModificarUsuarioAdministrador;
 import frames.VentanaMoverCarroAdministrador;
 import frames.VentanaVerCarrosAdministrador;
+import frames.VentanaVerCarrosPorTiendaAdministrador;
 import frames.VentanaVerEspaciosLibresAdministrador;
 import frames.VentanaVerTiendasAdministrador;
 import frames.VentanaVerUsuariosAdministrador;

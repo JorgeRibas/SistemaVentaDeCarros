@@ -5,7 +5,7 @@
  */
 package clases;
 
-import Vista.VentanaPrincipal;
+import frames.VentanaPrincipal;
 
 /**
  *

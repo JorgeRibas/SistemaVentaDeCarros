@@ -1,8 +1,6 @@
 package Datos;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Conexion {
     
@@ -18,7 +16,13 @@ public class Conexion {
     
     public void abrirCnx() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
-        cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/siscqp?user=root&password=root");
+        String ip = "jdbc:mysql://"
+                + "localhost:3306/ventacarrosdb"
+                + "?useSSL=false";
+        String user = "root";
+        String pass = "root";
+        
+        cn = DriverManager.getConnection(ip,user,pass);
     }
     
     public void cerrarCnx() throws SQLException{
