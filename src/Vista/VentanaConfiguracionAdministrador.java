@@ -7,25 +7,9 @@ package Vista;
 
 import Vista.VentanaIngresarAdministrador;
 import Vista.VentanaPrincipal;
-import frames.VentanaAgregarCarroAdministrador;
-import frames.VentanaAgregarIdiomaAdministrador;
-import frames.VentanaAgregarTiendaAdministrador;
-import frames.VentanaAgregarUsuarioAdministrador;
-import frames.VentanaCambiarDeIdiomaAdministrador;
-import frames.VentanaConfiguracionDeLaCuentaAdministrador;
-import frames.VentanaEditarCarroAdministrador;
-import frames.VentanaEditarTiendaAdministrador;
-import frames.VentanaEliminarCarroAdministrador;
-import frames.VentanaEliminarIdiomaAdministrador;
-import frames.VentanaEliminarTiendaAdministrador;
-import frames.VentanaEliminarUsuarioAdministrador;
-import frames.VentanaModificarUsuarioAdministrador;
-import frames.VentanaMoverCarroAdministrador;
-import frames.VentanaVerCarrosAdministrador;
-import frames.VentanaVerCarrosPorTiendaAdministrador;
-import frames.VentanaVerEspaciosLibresAdministrador;
-import frames.VentanaVerTiendasAdministrador;
-import frames.VentanaVerUsuariosAdministrador;
+import Vista.VentanaCambiarDeIdiomaAdministrador;
+import Vista.VentanaVerCarrosAdministrador;
+import Vista.VentanaVerTiendasAdministrador;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
@@ -46,6 +30,7 @@ public class VentanaConfiguracionAdministrador extends javax.swing.JFrame {
     public VentanaConfiguracionAdministrador() {
         initComponents();
         this.ImagenComoFondo();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -515,7 +500,7 @@ public class VentanaConfiguracionAdministrador extends javax.swing.JFrame {
 
     private void menuItemModificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemModificarUsuarioActionPerformed
         // TODO add your handling code here:
-        VentanaModificarUsuarioAdministrador ventanaModificarUsuarioAdministrador = new VentanaModificarUsuarioAdministrador();
+        VentanaEditarUsuarioAdministrador ventanaModificarUsuarioAdministrador = new VentanaEditarUsuarioAdministrador();
         ventanaModificarUsuarioAdministrador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_menuItemModificarUsuarioActionPerformed

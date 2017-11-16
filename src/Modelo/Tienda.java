@@ -12,6 +12,10 @@ public class Tienda {
     public int getIdTienda() {
         return idTienda;
     }
+    
+    public String getIdTiendaString() {
+        return Integer.toString(idTienda);
+    }
 
     public void setIdTienda(int idTienda) {
         this.idTienda = idTienda;

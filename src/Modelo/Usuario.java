@@ -3,13 +3,15 @@ package Modelo;
 public class Usuario {
     
     private int idUsuario;              //()    
-    private boolean rol;                //(true = administrador, false = vendedor)
-    private Tienda idTienda;            //()
+    private String  rol;                //(A = administrador, V = vendedor)
+    private int  idTienda;              //()
     private String nombre;              //()
     private String apellido;            //()
     private String cedula;              //(Verificaciones de cedula. Pasaporte, cedula, o residencia)
     private String nombreLogin;         //(Con el mismo formato para todos, jribas, dcolumna, avargas, emora, emora... asignarlo automaticamente?? )
     private String contrasena;          //()
+    private String preg1;
+    private String preg2;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -59,23 +61,45 @@ public class Usuario {
         this.cedula = cedula;
     }
 
-
-    public Tienda getIdTienda() {
+    public int getIdTienda() {
         return idTienda;
     }
 
-    public void setIdTienda(Tienda idTienda) {
+    public void setIdTienda(int idTienda) {
         this.idTienda = idTienda;
     }
 
-    public boolean isRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(boolean rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
+    public String getPreg1() {
+        return preg1;
+    }
 
+    public void setPreg1(String preg1) {
+        this.preg1 = preg1;
+    }
+
+    public String getPreg2() {
+        return preg2;
+    }
+
+    public void setPreg2(String preg2) {
+        this.preg2 = preg2;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "idUsuario=" + idUsuario + ", rol=" + rol + ", idTienda=" + idTienda + ", nombre=" 
+                + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", nombreLogin=" + nombreLogin + ", contrasena=" 
+                + contrasena + ", preg1=" + preg1 + ", preg2=" + preg2 + '}';
+    }
+    
+    
     
 }
