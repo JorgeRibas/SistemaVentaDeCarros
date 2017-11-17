@@ -309,11 +309,6 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="txtNombreCompleto" alignment="0" pref="200" max="32767" attributes="0"/>
-                                      <Component id="txtApellidos" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtNombreLogin" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -322,12 +317,17 @@
                                           <Component id="lblMensajeNombreDeUsuario" min="-2" pref="200" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="txtNombreCompleto" alignment="0" pref="200" max="32767" attributes="0"/>
+                                      <Component id="txtApellidos" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtNombreLogin" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel5" min="-2" pref="141" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                              <Component id="txtContrasenaTemporal" min="-2" pref="206" max="-2" attributes="0"/>
+                              <Component id="txtContrasena" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -404,14 +404,14 @@
                   <Component id="lblMensajeNombreDeUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMensajeTienda" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtContrasenaTemporal" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtContrasena" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblMensajeContrasenaTemporal" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="10" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnAnterior" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
@@ -517,8 +517,6 @@
     <Component class="javax.swing.JFormattedTextField" name="txtApellidos">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtNombreLogin">
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtContrasenaTemporal">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtCedula">
     </Component>
@@ -640,6 +638,8 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtContrasena">
     </Component>
   </SubComponents>
 </Form>

@@ -670,7 +670,7 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
         int rowIndex = tblUsuarios.getSelectedRow();
         
         txtTienda.setText       (modeloTabla.getValueAt(rowIndex, 0).toString());
-        txtNombreLogin.setText   (modeloTabla.getValueAt(rowIndex, 1).toString());
+        txtNombreLogin.setText  (modeloTabla.getValueAt(rowIndex, 1).toString());
         txtRol.setText          (modeloTabla.getValueAt(rowIndex, 2).toString());
         txtNombre.setText       (modeloTabla.getValueAt(rowIndex, 3).toString());
         txtApellidos.setText    (modeloTabla.getValueAt(rowIndex, 4).toString());
@@ -806,37 +806,12 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
 
         List<Usuario> lista;
         lista = datosUsuario.listar();
-        
-//        String rol = "";
-//        
         for (int i = 0; i < lista.size(); i++) {
-//            if(lista.get(i).getRol().equals("A")){
-//                rol = "ADMINISTRADOR";
-//            }else if(lista.get(i).getRol().equals("V")){
-//                rol = "VENDEDOR";
-//            }
             
             modeloTabla.addRow(new Object[]{lista.get(i).getIdTienda(), lista.get(i).getNombreLogin(),lista.get(i).getRol(),
                 lista.get(i).getNombre(),lista.get(i).getApellido(),lista.get(i).getCedula()});
         }
         tblUsuarios.setModel(modeloTabla);
     }
-    
-//    private void LlenarCBTienda() {
-//        try {
-//            cbTiendas.addItem("Seleccione una tienda: ");
-//
-//            Vector<Tienda> listaTiendas;
-//            listaTiendas = datosTienda.listarVector();
-//
-//            for (int i = 0; i < listaTiendas.size(); i++) {
-//                cbTiendas.addItem(Integer.toString(listaTiendas.get(i).getIdTienda()));
-//            }
-//            
-//        } catch (Exception ex) {
-//            Logger.getLogger(VentanaVerCarrosPorTiendaVendedor.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
     
 }

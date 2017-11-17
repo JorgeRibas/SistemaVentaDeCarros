@@ -9,18 +9,19 @@ public enum Marca {
     PEUGEOT("PEUGEOT"), PORSCHE("PORSCHE"), RAM("RAM"), SMART("SMART"), SUBARU("SUBARU"), TOYOTA("TOYOTA"),
     VOLKSWAGEN("VOLKSWAGEN"), VOLVO("VOLVO");
     
-    private String marca;
+    private final String marca;
     
-    private Marca(String marcaCarro){
-        this.marca = marcaCarro;
+    private Marca(String marca){
+        this.marca = marca;
     }
-
+    
     public String getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    @Override
+    public String toString() {
+        return marca;
     }
-
+    
 }

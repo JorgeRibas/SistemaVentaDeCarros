@@ -14,10 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.*;
-//import javax.swing.JLabel;
-//import javax.swing.JLayeredPane;
-//import javax.swing.JOptionPane;
-//import javax.swing.JPanel;
 
 public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
 
@@ -50,7 +46,6 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         txtNombreCompleto = new javax.swing.JFormattedTextField();
         txtApellidos = new javax.swing.JFormattedTextField();
         txtNombreLogin = new javax.swing.JFormattedTextField();
-        txtContrasenaTemporal = new javax.swing.JFormattedTextField();
         txtCedula = new javax.swing.JFormattedTextField();
         btnAgregarUsuario = new javax.swing.JButton();
         lblMensajeNombreCompleto = new javax.swing.JLabel();
@@ -63,6 +58,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         cbTienda = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         cbRol = new javax.swing.JComboBox<>();
+        txtContrasena = new javax.swing.JPasswordField();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -426,20 +422,20 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtNombreCompleto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtNombreLogin, javax.swing.GroupLayout.Alignment.LEADING))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblMensajeNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblMensajeApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblMensajeNombreDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(lblMensajeNombreDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtNombreCompleto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                        .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNombreLogin, javax.swing.GroupLayout.Alignment.LEADING))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(64, 64, 64)
-                                .addComponent(txtContrasenaTemporal, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -497,13 +493,13 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMensajeNombreDeUsuario)
                     .addComponent(lblMensajeTienda))
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(txtContrasenaTemporal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMensajeContrasenaTemporal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAnterior, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -664,7 +660,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
             int idTienda = Integer.parseInt(cbTienda.getSelectedItem().toString());
             String rol = cbRol.getSelectedItem().toString().substring(0,1);
             String login = txtNombreLogin.getText().toLowerCase();
-            String passwd = txtContrasenaTemporal.getText();
+            String passwd = txtContrasena.getText();
             String name = txtNombreCompleto.getText();
             String lastname = txtApellidos.getText();
             String cedula = txtCedula.getText();
@@ -777,7 +773,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem munuItemAgregarCarro;
     private javax.swing.JFormattedTextField txtApellidos;
     private javax.swing.JFormattedTextField txtCedula;
-    private javax.swing.JFormattedTextField txtContrasenaTemporal;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JFormattedTextField txtNombreCompleto;
     private javax.swing.JFormattedTextField txtNombreLogin;
     // End of variables declaration//GEN-END:variables
@@ -804,7 +800,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         }
     }
 
-    public void ObtenerHora() { // 6 Líneas de Código
+    public void ObtenerHora() {
         Calendar calendario = new GregorianCalendar();
         int hora, minutos, segundos;
         hora = calendario.get(Calendar.HOUR_OF_DAY);
@@ -813,7 +809,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
     }
 
-    public void LabelNoVisble() { // 7 Lineas de codigo
+    public void LabelNoVisble() {
         lblMensajeApellidos.setVisible(false);
         lblMensajeCedula.setVisible(false);
         lblMensajeContrasenaTemporal.setVisible(false);
@@ -823,7 +819,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         lblMensajeTienda.setVisible(false);
     }
 
-    public void CamposVacios() { // 35 Lineas de Codigo
+    public void CamposVacios() {
         if (txtApellidos.getText().isEmpty()) {
             lblMensajeApellidos.setVisible(true);
             lblMensajeApellidos.setText("Campo es vacio");
@@ -836,7 +832,7 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         } else {
             lblMensajeCedula.setVisible(false);
         }
-        if (txtContrasenaTemporal.getText().isEmpty()) {
+        if (txtContrasena.getText().isEmpty()) {
             lblMensajeContrasenaTemporal.setVisible(true);
             lblMensajeContrasenaTemporal.setText("Campo es vacio");
         } else {
@@ -854,23 +850,11 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
         } else {
             lblMensajeNombreDeUsuario.setVisible(false);
         }
-//        if (txtRol.getText().isEmpty()) {
-//            lblMensajeRol.setVisible(true);
-//            lblMensajeRol.setText("Campo es vacio");
-//        } else {
-//            lblMensajeRol.setVisible(false);
-//        }
-//        if (txtTienda.getText().isEmpty()) {
-//            lblMensajeTienda.setVisible(true);
-//            lblMensajeTienda.setText("Campo es vacio");
-//        } else {
-//            lblMensajeTienda.setVisible(false);
-//        }
     }
 
     public void AgregarUsuario() { // 6 Lineas de Codigo
         if (!txtApellidos.getText().isEmpty() && !txtCedula.getText().isEmpty() && 
-                !txtContrasenaTemporal.getText().isEmpty() && !txtNombreCompleto.getText().isEmpty() && 
+                !txtContrasena.getText().isEmpty() && !txtNombreCompleto.getText().isEmpty() && 
                 txtNombreLogin.getText().isEmpty()
 //                && cbRol. && !cbTienda.getSelectedIndex()
                 ) {

@@ -16,6 +16,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.ImagenComoFondo();
         lblMensajeDeError.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
+/* --------------------------- GUARGAR EL LOGIN DEL USUARIO CONECTADO PARA MOSTRAR EN SIGUIENTES PANTALLAS --------------------------- */
     }
 
     @SuppressWarnings("unchecked")
@@ -303,7 +304,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             MsjError();
         }
         
-//        return user;
+//        return user;    
     }
 
     private void MsjError() {

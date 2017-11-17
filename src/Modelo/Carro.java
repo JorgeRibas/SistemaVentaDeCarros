@@ -11,7 +11,7 @@ public class Carro{
     private float precioBase;       //()
     private String color;           //()
     private String vin;             //(id Mundial del carro)
-    private boolean estado;         //(true = nuevo, false = usado) 
+    private String estado;         //(true = nuevo, false = usado) 
 
     public int getIdCarro() {
         return idCarro;
@@ -85,11 +85,11 @@ public class Carro{
         this.precioBase = precioBase;
     }
 
-    public boolean isEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
     

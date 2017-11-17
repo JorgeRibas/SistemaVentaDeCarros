@@ -1,12 +1,18 @@
 package Vista;
 
+import Datos.DatosTienda;
+import Modelo.Tienda;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
 
@@ -14,6 +20,11 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
         initComponents();
         this.ImagenComoFondo();
         this.setExtendedState(MAXIMIZED_BOTH);
+        try {
+            LlenarTbl();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerEspaciosLibresAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +34,7 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
         btnAnterior = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTiendas = new javax.swing.JTable();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -69,7 +80,7 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ver espacios libres");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTiendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -80,7 +91,7 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
                 "Nombre de la tienda", "Total de espacios", "Espacios libres"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblTiendas);
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -547,7 +558,6 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -573,6 +583,7 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuTienda;
     private javax.swing.JMenu menuUsuario;
     private javax.swing.JMenuItem munuItemAgregarCarro;
+    private javax.swing.JTable tblTiendas;
     // End of variables declaration//GEN-END:variables
 
     public void ImagenComoFondo() { // 6 Líneas de Código 
@@ -605,4 +616,20 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
     }
+    
+    DatosTienda dataTienda = new DatosTienda();
+    
+    private void LlenarTbl() throws Exception {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Nombre", "Espacios Disponibles", "Espacios Ocupados"});
+
+        List<Tienda> lista;
+        lista = dataTienda.listar();
+        
+        for (int i = 0; i < lista.size(); i++) {
+            modeloTabla.addRow(new Object[]{lista.get(i).getNombreTienda(), lista.get(i).getEspaciosDisponibles(), lista.get(i).getEspaciosOcupados()});
+        }
+        tblTiendas.setModel(modeloTabla);
+    }
+    
 }

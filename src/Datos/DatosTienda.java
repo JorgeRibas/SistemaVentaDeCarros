@@ -120,17 +120,19 @@ public class DatosTienda extends Conexion {
         return lista;
     }
 
-    public void modificar(Tienda tienda) throws Exception {
+    public void modificar(Tienda tienda, int id) throws Exception {
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("UPDATE tienda SET tienda_id = ?, tienda_nombre = ?, tienda_direccion = ?,"
-                    + "tienda_provincia = ?, tienda_espaciosDisponibles = ?, tienda_espaciosOcupados = ?");
-            st.setInt(1, tienda.getIdTienda());
-            st.setString(2, tienda.getNombreTienda());
-            st.setString(3, tienda.getDireccion());
-            st.setString(4, tienda.getProvincia());
-            st.setInt(5, tienda.getEspaciosDisponibles());
-            st.setInt(6, tienda.getEspaciosOcupados());
+            PreparedStatement st = this.getCnx().prepareStatement("UPDATE tienda SET tienda_nombre = ?, tienda_direccion = ?,"
+                    + "tienda_provincia = ?, tienda_espaciosDisponibles = ?, tienda_espaciosOcupados = ?"
+                    + "WHERE tienda_id = "+id+" ");
+            
+//            st.setInt(1, tienda.getIdTienda());
+            st.setString(1, tienda.getNombreTienda());
+            st.setString(2, tienda.getDireccion());
+            st.setString(3, tienda.getProvincia());
+            st.setInt   (4, tienda.getEspaciosDisponibles());
+            st.setInt   (5, tienda.getEspaciosOcupados());
 
             st.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {

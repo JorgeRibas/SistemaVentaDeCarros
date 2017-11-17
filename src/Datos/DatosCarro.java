@@ -56,7 +56,7 @@ public class DatosCarro extends Conexion{
                 carro.setPrecioBase(rs.getFloat("carro_precioBase"));
                 carro.setColor(rs.getString("carro_color"));
                 carro.setVin(rs.getString("carro_vin"));
-                carro.setEstado(rs.getBoolean("carro_estado"));
+                carro.setEstado(rs.getString("carro_estado"));
             }
             
         } catch (Exception e) {
@@ -90,7 +90,7 @@ public class DatosCarro extends Conexion{
                 car.setPrecioBase(rs.getFloat("carro_precioBase"));
                 car.setColor(rs.getString("carro_color"));
                 car.setVin(rs.getString("carro_vin"));
-                car.setEstado(rs.getBoolean("carro_estado"));
+                car.setEstado(rs.getString("carro_estado"));
                 
                 lista.add(car);
             }
@@ -99,7 +99,7 @@ public class DatosCarro extends Conexion{
         } finally {
             this.cerrarCnx();
         }
-        return null;
+        return lista;
     }
 
     public void modificar(Carro car) throws Exception{
@@ -115,7 +115,7 @@ public class DatosCarro extends Conexion{
             st.setFloat (6, car.getPrecioBase());
             st.setString(7, car.getColor());
             st.setString(8, car.getVin());
-            st.setString(9, car.getModelo());
+            st.setString(9, car.getEstado());
             
             st.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {
