@@ -5,14 +5,9 @@ import Datos.DatosTienda;
 import Datos.DatosUsuario;
 import Modelo.Tienda;
 import Modelo.Usuario;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.Vector;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.*;
 
 public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
@@ -511,7 +506,6 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
         VentanaUsuarioAdministrador ventanaUsuarioAdministrador = new VentanaUsuarioAdministrador();
         ventanaUsuarioAdministrador.setVisible(true);
         this.dispose();
@@ -525,9 +519,9 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCerrarSesionActionPerformed
 
     private void munuItemAgregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_munuItemAgregarCarroActionPerformed
-//        VentanaAgregarCarroAdministrador ventanaAgregarCarroAdministrador = new VentanaAgregarCarroAdministrador();
-//        ventanaAgregarCarroAdministrador.setVisible(true);
-//        this.dispose();
+        VentanaAgregarCarroAdministrador ventanaAgregarCarroAdministrador = new VentanaAgregarCarroAdministrador();
+        ventanaAgregarCarroAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_munuItemAgregarCarroActionPerformed
 
     private void menuItemEditarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditarCarroActionPerformed
@@ -591,9 +585,9 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_menuUsuarioMouseClicked
 
     private void menuItemAgregarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAgregarTiendaActionPerformed
-//        VentanaAgregarTiendaAdministrador ventanaAgregarTiendaAdministrador = new VentanaAgregarTiendaAdministrador();
-//        ventanaAgregarTiendaAdministrador.setVisible(true);
-//        this.dispose();
+        VentanaAgregarTiendaAdministrador ventanaAgregarTiendaAdministrador = new VentanaAgregarTiendaAdministrador();
+        ventanaAgregarTiendaAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_menuItemAgregarTiendaActionPerformed
 
     private void menuItemEditarTiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEditarTiendaActionPerformed
@@ -624,10 +618,9 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_menuTiendaMouseClicked
 
     private void menuItemAgregarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAgregarIdiomaActionPerformed
-//        // TODO add your handling code here:
-//        VentanaAgregarIdiomaAdministrador ventanaAgregarIdiomaAdministrador = new VentanaAgregarIdiomaAdministrador();
-//        ventanaAgregarIdiomaAdministrador.setVisible(true);
-//        this.dispose();
+        VentanaAgregarIdiomaAdministrador ventanaAgregarIdiomaAdministrador = new VentanaAgregarIdiomaAdministrador();
+        ventanaAgregarIdiomaAdministrador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_menuItemAgregarIdiomaActionPerformed
 
     private void menuItemEliminarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEliminarIdiomaActionPerformed
@@ -652,20 +645,20 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConfiguracionMouseClicked
 
     private void btnAgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarUsuarioActionPerformed
-
+        
         DatosUsuario datosUser = new DatosUsuario();
-
+        
         try {
             int idUsuario = 0;
             int idTienda = Integer.parseInt(cbTienda.getSelectedItem().toString());
             String rol = cbRol.getSelectedItem().toString().substring(0,1);
-            String login = txtNombreLogin.getText().toLowerCase();
+            String login = txtNombreLogin.getText().toLowerCase().trim();
             String passwd = txtContrasena.getText();
             String name = txtNombreCompleto.getText();
             String lastname = txtApellidos.getText();
             String cedula = txtCedula.getText();
-            String preg1 = "placeholder";
-            String preg2 = "placeholder";
+            String preg1 = "0placeholder";
+            String preg2 = "0placeholder";
             
             Usuario user = new Usuario();
             user.setIdUsuario(idUsuario);
@@ -874,13 +867,11 @@ public class VentanaAgregarUsuarioAdministrador extends javax.swing.JFrame {
             listaTiendas = datosTienda.listarVector();
 
             for (int i = 0; i < listaTiendas.size(); i++) {
-                cbTienda.addItem(Integer.toString(listaTiendas.get(i).getIdTienda()));
+                cbTienda.addItem((listaTiendas.get(i).getNombreTienda()));
             }
-            
         } catch (Exception ex) {
             Logger.getLogger(VentanaVerCarrosPorTiendaVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void LlenarCBRol() {

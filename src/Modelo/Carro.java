@@ -4,14 +4,14 @@ public class Carro{
     
     private int idCarro;            //(id local del carro)
     private int idInfoCarro;        //(id local de InfoCarro)
-    private TipoCarro tipoCarro;    //(Puede ser otra lista con todos los tipos de carro existentes, o un valor numerico para cada tipo existente)
+    private String tipoCarro;       //(Puede ser otra lista con todos los tipos de carro existentes, o un valor numerico para cada tipo existente)
     private String modelo;          //()
     private int anno;               //()
-    private Marca marca;            //(Clase enlistando todas las marcas de carro en el mercado)
+    private String marca;           //(Clase enlistando todas las marcas de carro en el mercado)
     private float precioBase;       //()
     private String color;           //()
     private String vin;             //(id Mundial del carro)
-    private String estado;         //(true = nuevo, false = usado) 
+    private String estado;          //(true = nuevo, false = usado) 
 
     public int getIdCarro() {
         return idCarro;
@@ -30,10 +30,10 @@ public class Carro{
     }
 
     public String getTipoCarro() {
-        return tipoCarro.getTipoCarro();
+        return tipoCarro;
     }
 
-    public void setTipoCarro(TipoCarro tipoCarro) {
+    public void setTipoCarro(String tipoCarro) {
         this.tipoCarro = tipoCarro;
     }
     
@@ -70,10 +70,10 @@ public class Carro{
     }
 
     public String getMarca() {
-        return marca.getMarca();
+        return marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 

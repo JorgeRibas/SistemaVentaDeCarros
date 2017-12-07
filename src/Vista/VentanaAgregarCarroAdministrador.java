@@ -1,22 +1,18 @@
 package Vista;
 
 import Datos.DatosCarro;
+import Datos.DatosCarroPorTienda;
+import Datos.DatosTienda;
 import Modelo.Carro;
+import Modelo.CarroPorTienda;
 import Modelo.Marca;
 import Modelo.TipoCarro;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import Modelo.ModelosCarro;
+import Modelo.Tienda;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
 
@@ -25,6 +21,7 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
         this.ImagenComoFondo();
         this.LableNoVisible();
         this.setExtendedState(MAXIMIZED_BOTH);
+        LlenarCBTienda();
         LlenarCBModelo();
         LlenarCBAnno();
         LlenarCBMarca();
@@ -47,18 +44,21 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JFormattedTextField();
         txtColor = new javax.swing.JFormattedTextField();
-        txtPlaca = new javax.swing.JFormattedTextField();
         txtVIN = new javax.swing.JFormattedTextField();
         cbModelo = new javax.swing.JComboBox<>();
         cbAno = new javax.swing.JComboBox<>();
         cbMarca = new javax.swing.JComboBox<>();
         btnAgregarCarro = new javax.swing.JButton();
-        lblMensajePrecioBase = new javax.swing.JLabel();
-        lblMensajeTipoDeCarro = new javax.swing.JLabel();
-        lblMensajeColor = new javax.swing.JLabel();
-        lblMensajePlaca = new javax.swing.JLabel();
-        lblMensajeNumeroDeVIN = new javax.swing.JLabel();
+        errorPrecio = new javax.swing.JLabel();
+        errorAnno = new javax.swing.JLabel();
+        errorModelo = new javax.swing.JLabel();
+        errorTienda = new javax.swing.JLabel();
+        errorVIN = new javax.swing.JLabel();
         cbTipoCarro = new javax.swing.JComboBox<>();
+        errorMarca = new javax.swing.JLabel();
+        errorColor = new javax.swing.JLabel();
+        errorTipoCarro = new javax.swing.JLabel();
+        cbTiendas = new javax.swing.JComboBox<>();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -130,7 +130,7 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Placa:");
+        jLabel8.setText("Tienda:");
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,6 +142,12 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
             }
         });
 
+        cbMarca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbMarcaMouseClicked(evt);
+            }
+        });
+
         btnAgregarCarro.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btnAgregarCarro.setText("Agregar carro");
         btnAgregarCarro.addActionListener(new java.awt.event.ActionListener() {
@@ -150,25 +156,37 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
             }
         });
 
-        lblMensajePrecioBase.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblMensajePrecioBase.setForeground(new java.awt.Color(255, 0, 0));
-        lblMensajePrecioBase.setText("Mensaje de error");
+        errorPrecio.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorPrecio.setForeground(new java.awt.Color(255, 0, 0));
+        errorPrecio.setText("Mensaje de error");
 
-        lblMensajeTipoDeCarro.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblMensajeTipoDeCarro.setForeground(new java.awt.Color(255, 0, 0));
-        lblMensajeTipoDeCarro.setText("Mensaje de error");
+        errorAnno.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorAnno.setForeground(new java.awt.Color(255, 0, 0));
+        errorAnno.setText("Mensaje de error");
 
-        lblMensajeColor.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblMensajeColor.setForeground(new java.awt.Color(255, 0, 0));
-        lblMensajeColor.setText("Mensaje de error");
+        errorModelo.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorModelo.setForeground(new java.awt.Color(255, 0, 0));
+        errorModelo.setText("Mensaje de error");
 
-        lblMensajePlaca.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblMensajePlaca.setForeground(new java.awt.Color(255, 0, 0));
-        lblMensajePlaca.setText("Mensaje de error");
+        errorTienda.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorTienda.setForeground(new java.awt.Color(255, 0, 0));
+        errorTienda.setText("Mensaje de error");
 
-        lblMensajeNumeroDeVIN.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lblMensajeNumeroDeVIN.setForeground(new java.awt.Color(255, 0, 0));
-        lblMensajeNumeroDeVIN.setText("Mensaje de error");
+        errorVIN.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorVIN.setForeground(new java.awt.Color(255, 0, 0));
+        errorVIN.setText("Mensaje de error");
+
+        errorMarca.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorMarca.setForeground(new java.awt.Color(255, 0, 0));
+        errorMarca.setText("Mensaje de error");
+
+        errorColor.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorColor.setForeground(new java.awt.Color(255, 0, 0));
+        errorColor.setText("Mensaje de error");
+
+        errorTipoCarro.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        errorTipoCarro.setForeground(new java.awt.Color(255, 0, 0));
+        errorTipoCarro.setText("Mensaje de error");
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -409,51 +427,56 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPrecio)
-                            .addComponent(cbModelo, 0, 250, Short.MAX_VALUE)
-                            .addComponent(cbAno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtColor))
-                        .addGap(97, 97, 97)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbTipoCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVIN))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPlaca)
-                                    .addComponent(cbMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbTipoCarro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(txtColor)
+                                    .addComponent(cbMarca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(97, 97, 97)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtVIN, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cbAno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cbTiendas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(errorColor, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(errorPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(errorMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addComponent(errorTipoCarro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(195, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 875, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnAgregarCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(96, 96, 96))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblMensajeColor, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMensajeTipoDeCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMensajePlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblMensajePrecioBase, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(254, 254, 254)
-                                .addComponent(lblMensajeNumeroDeVIN, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(errorModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorAnno, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorVIN, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(187, 187, 187))))
         );
         layout.setVerticalGroup(
@@ -463,29 +486,34 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(cbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbTipoCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(cbAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeTipoDeCarro)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(errorAnno)
+                    .addComponent(errorMarca))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cbAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(cbModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbTipoCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeColor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(errorModelo)
+                    .addComponent(errorTipoCarro))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel7)
+                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajePlaca)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(errorTienda)
+                    .addComponent(errorColor))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -494,8 +522,8 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
                     .addComponent(txtVIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMensajePrecioBase)
-                    .addComponent(lblMensajeNumeroDeVIN))
+                    .addComponent(errorPrecio)
+                    .addComponent(errorVIN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addComponent(btnAgregarCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -672,34 +700,74 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
 
     private void btnAgregarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarroActionPerformed
         DatosCarro datosCarro = new DatosCarro();
-            
+        DatosTienda datosTienda = new DatosTienda();
+        DatosCarroPorTienda datosCxT = new DatosCarroPorTienda();
+
         try {
             int idCarro = 0;
             int idInfoCarro = 3;
             String tipoCarro = cbTipoCarro.getSelectedItem().toString();
             String modelo = cbModelo.getSelectedItem().toString();
-            int anno = Integer.parseInt(cbAno.getSelectedItem().toString());
+            int anno = 0;
+            if (cbAno.getSelectedIndex() != 0) {
+                anno = Integer.parseInt(cbAno.getSelectedItem().toString());
+            } else {
+                EspaciosVacios();
+            }
             String marca = cbMarca.getSelectedItem().toString();
             String precioBase = txtPrecio.getText();
             String color = txtColor.getText();
             String VIN = txtVIN.getText();
-            String estado = "N";
+            String estado = "";
             
+            if (anno < 2017) {
+                estado = "NUEVO";
+            } else {
+                estado = "USADO";
+            }
             
             Carro carro = new Carro();
             carro.setIdCarro(idCarro);
             carro.setIdInfoCarro(idInfoCarro);
-            carro.setTipoCarro(TipoCarro.valueOf(tipoCarro));
+            carro.setTipoCarro(TipoCarro.valueOf(tipoCarro).toString());
             carro.setModelo(modelo);
             carro.setAnno(anno);
-            carro.setMarca(Marca.valueOf(marca));
-            carro.setPrecioBase(Float.parseFloat(precioBase));
+            carro.setMarca(Marca.valueOf(marca).toString());
             carro.setColor(color);
             carro.setVin(VIN);
+            carro.setPrecioBase(Float.parseFloat(precioBase));
             carro.setEstado(estado);
             
-            datosCarro.registrar(carro);
-//        this.BotonAgregarCarro();
+            CarroPorTienda car = new CarroPorTienda();
+            Carro carroFind = new Carro();
+            Carro carroNew = new Carro();
+            
+            int espaciosDisp = 0;
+            int espaciosOcup = 0;
+            Tienda tiendaFind = new Tienda();
+            Tienda tiendaNew = new Tienda();
+            tiendaFind.setIdTienda(100 + (cbTiendas.getSelectedIndex()));
+            tiendaNew = datosTienda.leerID(tiendaFind);
+            espaciosDisp = tiendaNew.getEspaciosDisponibles();
+            espaciosOcup = tiendaNew.getEspaciosOcupados();
+
+            BotonAgregarCarro();
+            EspaciosVacios();
+            if (espaciosB) {
+                datosCarro.registrar(carro);
+                
+                carroFind.setVin(VIN);
+                carroNew = datosCarro.leerVIN(carroFind);
+                car.setIdCarro(carroNew.getIdCarro());
+                car.setIdTienda(100 + (cbTiendas.getSelectedIndex()));
+                datosCxT.registrar(car);
+                
+                tiendaNew.setEspaciosDisponibles(espaciosDisp - 1);
+                tiendaNew.setEspaciosOcupados(espaciosOcup - 1);
+                datosTienda.modificar(tiendaNew, tiendaNew.getIdTienda());
+                
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(VentanaAgregarCarroAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -709,9 +777,10 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbAnoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void cbMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbMarcaMouseClicked
+        // Buscar la lista de modelos que esa marca de carro seleccionada tiene
+    }//GEN-LAST:event_cbMarcaMouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -750,7 +819,16 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbAno;
     private javax.swing.JComboBox<String> cbMarca;
     private javax.swing.JComboBox<String> cbModelo;
+    private javax.swing.JComboBox<String> cbTiendas;
     private javax.swing.JComboBox<String> cbTipoCarro;
+    private javax.swing.JLabel errorAnno;
+    private javax.swing.JLabel errorColor;
+    private javax.swing.JLabel errorMarca;
+    private javax.swing.JLabel errorModelo;
+    private javax.swing.JLabel errorPrecio;
+    private javax.swing.JLabel errorTienda;
+    private javax.swing.JLabel errorTipoCarro;
+    private javax.swing.JLabel errorVIN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -765,11 +843,6 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JLabel lblMensajeColor;
-    private javax.swing.JLabel lblMensajeNumeroDeVIN;
-    private javax.swing.JLabel lblMensajePlaca;
-    private javax.swing.JLabel lblMensajePrecioBase;
-    private javax.swing.JLabel lblMensajeTipoDeCarro;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -796,12 +869,13 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuUsuario;
     private javax.swing.JMenuItem munuItemAgregarCarro;
     private javax.swing.JFormattedTextField txtColor;
-    private javax.swing.JFormattedTextField txtPlaca;
     private javax.swing.JFormattedTextField txtPrecio;
     private javax.swing.JFormattedTextField txtVIN;
     // End of variables declaration//GEN-END:variables
 
-public void ImagenComoFondo() { // 6 Líneas de Código 
+    boolean espaciosB = false;
+
+    public void ImagenComoFondo() { // 6 Líneas de Código 
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/imagenes/ImagenFondo.jpg"));
         JLabel fondo = new JLabel();
@@ -831,80 +905,129 @@ public void ImagenComoFondo() { // 6 Líneas de Código
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
     }
-    
-    public void LableNoVisible(){ // 5 Líneas de Código
-        lblMensajeColor.setVisible(false);
-        lblMensajeNumeroDeVIN.setVisible(false);
-        lblMensajePlaca.setVisible(false);
-        lblMensajePrecioBase.setVisible(false);
-        lblMensajeTipoDeCarro.setVisible(false);
+
+    public void LableNoVisible() { // 5 Líneas de Código
+        errorMarca.setVisible(false);
+        errorTipoCarro.setVisible(false);
+        errorColor.setVisible(false);
+        errorModelo.setVisible(false);
+        errorVIN.setVisible(false);
+        errorTienda.setVisible(false);
+        errorPrecio.setVisible(false);
+        errorAnno.setVisible(false);
     }
-    
-    public void EspaciosVacios(){ // 25 Lineas de Codigo
-        if(txtColor.getText().isEmpty()){
-            lblMensajeColor.setVisible(true);
-            lblMensajeColor.setText("Campo es vacio");
-        }else{
-            lblMensajeColor.setVisible(false);
+
+    public void EspaciosVacios() { // 25 Lineas de Codigo
+        int espacios = 0;
+        
+        if (cbAno.getSelectedIndex() == 0) {
+            errorAnno.setVisible(true);
+            errorAnno.setText("Por favor seleccione un año");
+            espacios = espacios + 1;
+        } else {
+            errorAnno.setVisible(false);
         }
-        if(txtVIN.getText().isEmpty()){
-            lblMensajeNumeroDeVIN.setVisible(true);
-            lblMensajeNumeroDeVIN.setText("Campo es vacio");
-        }else{
-            lblMensajeNumeroDeVIN.setVisible(false);
+        if (txtColor.getText().isEmpty()) {
+            errorColor.setVisible(true);
+            errorColor.setText("Campo es vacio");
+            espacios = espacios + 1;
+        } else {
+            errorColor.setVisible(false);
         }
-        if(txtPlaca.getText().isEmpty()){
-            lblMensajePlaca.setVisible(true);
-            lblMensajePlaca.setText("Campo es vacio");
-        }else{
-            lblMensajePlaca.setVisible(false);
+        if (txtVIN.getText().isEmpty()) {
+            errorVIN.setVisible(true);
+            errorVIN.setText("Campo es vacio");
+            espacios = espacios + 1;
+        } else {
+            errorVIN.setVisible(false);
         }
-        if(txtPrecio.getText().isEmpty()){
-            lblMensajePrecioBase.setVisible(true);
-            lblMensajePrecioBase.setText("Campo es vacio");
-        }else{
-            lblMensajePrecioBase.setVisible(false);
+        if (cbTiendas.getSelectedIndex() == 0) {
+            errorTienda.setVisible(true);
+            errorTienda.setText("Campo es vacio");
+            espacios = espacios + 1;
+        } else {
+            errorTienda.setVisible(false);
         }
-//        if(txtTipoCarro.getText().isEmpty()){
-//            lblMensajeTipoDeCarro.setVisible(true);
-//            lblMensajeTipoDeCarro.setText("Campo es vacio");
-//        }else{
-//            lblMensajeTipoDeCarro.setVisible(false);
-//        }
+        if (txtPrecio.getText().isEmpty()) {
+            errorPrecio.setVisible(true);
+            errorPrecio.setText("Campo es vacio");
+            espacios = espacios + 1;
+        } else {
+            errorPrecio.setVisible(false);
+        }
+        if (!txtPrecio.getText().startsWith("0") && !txtPrecio.getText().startsWith("1") && !txtPrecio.getText().startsWith("2")
+                && !txtPrecio.getText().startsWith("3") && !txtPrecio.getText().startsWith("4") && !txtPrecio.getText().startsWith("5")
+                && !txtPrecio.getText().startsWith("6") && !txtPrecio.getText().startsWith("7") && !txtPrecio.getText().startsWith("8")
+                && !txtPrecio.getText().startsWith("9")) {
+            errorPrecio.setVisible(true);
+            errorPrecio.setText("Campo es númerico");
+        } else {
+            errorPrecio.setVisible(false);
+        }
+        espaciosB = espacios <= 0; // if espacios <= 0, espaciosB = true;
     }
-    
-    public void BotonAgregarCarro(){ // 6 Líneas de Código
-        if(!txtColor.getText().isEmpty() && !txtVIN.getText().isEmpty() && !txtPlaca.getText().isEmpty() && !txtPrecio.getText().isEmpty()/* && !txtTipoCarro.getText().isEmpty()*/) {
-            VentanaIngresarAdministrador ventanaIngresarAdministrador = new VentanaIngresarAdministrador();
-            ventanaIngresarAdministrador.setVisible(true);
-            this.dispose();
-        }else{
+
+    public void BotonAgregarCarro() { // 6 Líneas de Código
+        if (!txtColor.getText().isEmpty() && !txtVIN.getText().isEmpty() /* && !txtPlaca.getText().isEmpty() */ && !txtPrecio.getText().isEmpty()/* && !txtTipoCarro.getText().isEmpty()*/) {
+//            cbAno.setSelectedIndex(0);
+//            cbMarca.setSelectedIndex(0);
+//            cbModelo.setSelectedIndex(0);
+//            cbTipoCarro.setSelectedIndex(0);
+//            txtColor.setText("");
+//            txtPlaca.setText("");
+//            txtPrecio.setText("");
+//            txtVIN.setText("");
+//            VentanaIngresarAdministrador ventanaIngresarAdministrador = new VentanaIngresarAdministrador();
+//            ventanaIngresarAdministrador.setVisible(true);
+//            this.dispose();
+        } else {
             this.EspaciosVacios();
         }
     }
-   
+
     private void LlenarCBMarca() {
         cbMarca.addItem("Seleccione el rol: ");
         cbMarca.setModel(new DefaultComboBoxModel(Marca.values()));
     }
-    
+
     private void LlenarCBTipoCarro() {
         cbTipoCarro.addItem("Seleccione el rol: ");
         cbTipoCarro.setModel(new DefaultComboBoxModel(TipoCarro.values()));
     }
-    
-    private void LlenarCBAnno(){
+
+    private void LlenarCBAnno() {
         cbAno.addItem("Seleccione el año:");
         for (int i = 2018; i > 1949; i--) {
             cbAno.addItem(Integer.toString(i));
         }
     }
+
+    private void LlenarCBModelo() {
+        // Introducir el enum entero en una lista e ir buscando despues sus datos con respecto
+        // a los ...
+
+        /* 
+            Sino pasar los enums a una tabla excel
+         */
+        List<ModelosCarro> lista;
+        cbModelo.addItem("Seleccione el rol: ");
+        cbModelo.setModel(new DefaultComboBoxModel(ModelosCarro.values()));
+    }
     
-    private void LlenarCBModelo(){
-        cbModelo.addItem("Seleccione el modelo: ");
-        cbModelo.addItem("Modelo 1");
-        cbModelo.addItem("Modelo 2");
-        cbModelo.addItem("Modelo 3");
-        cbModelo.addItem("Modelo 4");
+    DatosTienda datosTienda = new DatosTienda();
+    
+    private void LlenarCBTienda() {
+        try {
+            cbTiendas.addItem("Seleccione una tienda: ");
+
+            Vector<Tienda> listaTiendas;
+            listaTiendas = datosTienda.listarVector();
+
+            for (int i = 0; i < listaTiendas.size(); i++) {
+                cbTiendas.addItem((listaTiendas.get(i).getNombreTienda()));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerCarrosPorTiendaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

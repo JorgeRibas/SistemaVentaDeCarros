@@ -85,6 +85,11 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jButton1.setText("Eliminar carro");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -512,8 +517,12 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemConfiguracionDeLaCuentaActionPerformed
 
     private void menuConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuConfiguracionMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_menuConfiguracionMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -588,7 +597,6 @@ public class VentanaEliminarCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem munuItemAgregarCarro;
     // End of variables declaration//GEN-END:variables
 
-    
     public void ImagenComoFondo() { // 6 Líneas de Código 
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/imagenes/ImagenFondo.jpg"));

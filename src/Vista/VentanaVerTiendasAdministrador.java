@@ -632,6 +632,7 @@ public class VentanaVerTiendasAdministrador extends javax.swing.JFrame {
                                 lista.get(i).getProvincia(), lista.get(i).getEspaciosDisponibles(), lista.get(i).getEspaciosOcupados()});
         }
         tblTiendas.setModel(modeloTabla);
+        tblTiendas.setAutoCreateRowSorter(true);
     }
     
 }

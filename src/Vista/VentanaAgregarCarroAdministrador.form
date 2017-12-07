@@ -288,41 +288,54 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel3" max="32767" attributes="0"/>
-                          <Component id="jLabel5" pref="163" max="32767" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel5" pref="163" max="32767" attributes="0"/>
+                              <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel6" alignment="0" pref="145" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtPrecio" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbModelo" pref="250" max="32767" attributes="0"/>
-                          <Component id="cbAno" max="32767" attributes="0"/>
-                          <Component id="txtColor" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel6" min="-2" pref="145" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbTipoCarro" min="-2" pref="250" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtVIN" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jLabel4" max="32767" attributes="0"/>
-                                  <Component id="jLabel8" pref="145" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="cbTipoCarro" max="32767" attributes="0"/>
+                                  <Component id="txtPrecio" alignment="0" pref="250" max="32767" attributes="0"/>
+                                  <Component id="txtColor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbMarca" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPlaca" max="32767" attributes="0"/>
-                                  <Component id="cbMarca" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel9" pref="145" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtVIN" min="-2" pref="250" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel3" max="32767" attributes="0"/>
+                                          <Component id="jLabel2" max="32767" attributes="0"/>
+                                          <Component id="jLabel8" pref="145" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cbModelo" max="32767" attributes="0"/>
+                                          <Component id="cbAno" max="32767" attributes="0"/>
+                                          <Component id="cbTiendas" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="errorColor" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
+                              <Component id="errorPrecio" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="errorMarca" alignment="0" pref="295" max="32767" attributes="0"/>
+                              <Component id="errorTipoCarro" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -330,7 +343,7 @@
               <EmptySpace pref="195" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="875" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnAgregarCarro" min="-2" pref="200" max="-2" attributes="0"/>
@@ -338,14 +351,10 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblMensajeColor" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="lblMensajeTipoDeCarro" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="lblMensajePlaca" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblMensajePrecioBase" min="-2" pref="244" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
-                              <Component id="lblMensajeNumeroDeVIN" min="-2" pref="250" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="errorModelo" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="errorAnno" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="errorTienda" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="errorVIN" alignment="1" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                   </Group>
@@ -360,33 +369,40 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbAno" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="errorAnno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbTipoCarro" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblMensajeTipoDeCarro" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbAno" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorTipoCarro" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblMensajeColor" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtColor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTiendas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblMensajePlaca" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="errorTienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorColor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -396,8 +412,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblMensajePrecioBase" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblMensajeNumeroDeVIN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="errorVIN" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="126" max="32767" attributes="0"/>
               <Component id="btnAgregarCarro" min="-2" pref="50" max="-2" attributes="0"/>
@@ -504,7 +520,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Placa:"/>
+        <Property name="text" type="java.lang.String" value="Tienda:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -521,8 +537,6 @@
     <Component class="javax.swing.JFormattedTextField" name="txtPrecio">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtColor">
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtPlaca">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="txtVIN">
     </Component>
@@ -555,6 +569,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbMarcaMouseClicked"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -570,7 +587,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarCarroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMensajePrecioBase">
+    <Component class="javax.swing.JLabel" name="errorPrecio">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="1"/>
@@ -581,7 +598,7 @@
         <Property name="text" type="java.lang.String" value="Mensaje de error"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMensajeTipoDeCarro">
+    <Component class="javax.swing.JLabel" name="errorAnno">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="1"/>
@@ -592,7 +609,7 @@
         <Property name="text" type="java.lang.String" value="Mensaje de error"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMensajeColor">
+    <Component class="javax.swing.JLabel" name="errorModelo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="1"/>
@@ -603,7 +620,7 @@
         <Property name="text" type="java.lang.String" value="Mensaje de error"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMensajePlaca">
+    <Component class="javax.swing.JLabel" name="errorTienda">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="1"/>
@@ -614,7 +631,7 @@
         <Property name="text" type="java.lang.String" value="Mensaje de error"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblMensajeNumeroDeVIN">
+    <Component class="javax.swing.JLabel" name="errorVIN">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Grande" size="18" style="1"/>
@@ -626,6 +643,49 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbTipoCarro">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="errorMarca">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Mensaje de error"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="errorColor">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Mensaje de error"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="errorTipoCarro">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="18" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Mensaje de error"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTiendas">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

@@ -1,12 +1,14 @@
 package Vista;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import Datos.DatosCarro;
+import Datos.DatosTienda;
+import Modelo.Carro;
+import Modelo.Tienda;
+import java.util.*;
+import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
 
@@ -14,20 +16,22 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
         initComponents();
         this.ImagenComoFondo();
         this.setExtendedState(MAXIMIZED_BOTH);
+        try {
+            LlenarCBTienda();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerCarrosPorTiendaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnAnterior = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCarros = new javax.swing.JTable();
+        cbTiendas = new javax.swing.JComboBox<>();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -73,11 +77,7 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ver carros por tienda");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombre de la tienda:");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCarros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -88,7 +88,18 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
                 "Modelo", "Año", "Marca", "Precio", "Color"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblCarros);
+
+        cbTiendas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTiendasItemStateChanged(evt);
+            }
+        });
+        cbTiendas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbTiendasMouseClicked(evt);
+            }
+        });
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -321,36 +332,28 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnAnterior)
-                .addGap(0, 1242, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(454, 454, 454)
+                        .addGap(376, 376, 376)
                         .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(btnAnterior)
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(btnAnterior))
         );
 
         pack();
@@ -514,6 +517,17 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
     private void menuConfiguracionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuConfiguracionMouseClicked
     }//GEN-LAST:event_menuConfiguracionMouseClicked
 
+    private void cbTiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbTiendasMouseClicked
+    }//GEN-LAST:event_cbTiendasMouseClicked
+
+    private void cbTiendasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTiendasItemStateChanged
+        try {
+            LlenarTbl();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerCarrosPorTiendaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cbTiendasItemStateChanged
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -548,8 +562,7 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cbTiendas;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
@@ -557,7 +570,6 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -583,6 +595,7 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuTienda;
     private javax.swing.JMenu menuUsuario;
     private javax.swing.JMenuItem munuItemAgregarCarro;
+    private javax.swing.JTable tblCarros;
     // End of variables declaration//GEN-END:variables
 
     public void ImagenComoFondo() { // 6 Líneas de Código 
@@ -614,5 +627,39 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
         minutos = calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
+    }
+
+    DatosCarro datosCarro = new DatosCarro();
+    DatosTienda datosTienda = new DatosTienda();
+
+    private void LlenarTbl() throws Exception {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Modelo", "Marca", "Tipo", "Año", "Estado", "Precio", "Color", "VIN"});
+
+        List<Carro> lista;
+        lista = datosCarro.listarPorTienda(100 + (cbTiendas.getSelectedIndex()));
+
+        for (int i = 0; i < lista.size(); i++) {
+            modeloTabla.addRow(new Object[]{lista.get(i).getModelo(), lista.get(i).getMarca(), lista.get(i).getTipoCarro(),
+                lista.get(i).getAnno(), lista.get(i).getEstado(), lista.get(i).getPrecioBase(),
+                lista.get(i).getColor(), lista.get(i).getVin()});
+        }
+        tblCarros.setModel(modeloTabla);
+        tblCarros.setAutoCreateRowSorter(true);
+    }
+
+    private void LlenarCBTienda() {
+        try {
+            cbTiendas.addItem("Seleccione una tienda: ");
+
+            Vector<Tienda> listaTiendas;
+            listaTiendas = datosTienda.listarVector();
+
+            for (int i = 0; i < listaTiendas.size(); i++) {
+                cbTiendas.addItem((listaTiendas.get(i).getNombreTienda()));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerCarrosPorTiendaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

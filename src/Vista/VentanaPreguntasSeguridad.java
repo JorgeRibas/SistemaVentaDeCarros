@@ -1,7 +1,7 @@
 package Vista;
 
-import Datos.DatosUsuario;
 import Modelo.Usuario;
+import Datos.DatosUsuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -9,14 +9,16 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
+public class VentanaPreguntasSeguridad extends javax.swing.JFrame {
 
-    public VentanaHasOlvidadoTuContrasenaPaso1() {
+    public VentanaPreguntasSeguridad() {
         initComponents();
         this.ImagenComoFondo();
         this.LabelNoVisible();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
         LlenarCBPreguntas();
+        txtRespuesta1.setEnabled(false);
+        txtRespuesta2.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +41,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
         lblRespuesta1 = new javax.swing.JLabel();
         lblRespuesta2 = new javax.swing.JLabel();
         cbPreguntas2 = new javax.swing.JComboBox<>();
-        btnBuscar = new javax.swing.JButton();
+        btnBuscarUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +55,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("¿Has olvidado tu contraseña?");
+        jLabel1.setText("Preguntas de seguridad ");
 
         btnContinuar.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         btnContinuar.setText("Continuar");
@@ -95,11 +97,11 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
         lblRespuesta2.setForeground(new java.awt.Color(255, 0, 0));
         lblRespuesta2.setText("Mensaje de error");
 
-        btnBuscar.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        btnBuscar.setText("Continuar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarUser.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        btnBuscarUser.setText("Buscar");
+        btnBuscarUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarUserActionPerformed(evt);
             }
         });
 
@@ -115,9 +117,6 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(374, 374, 374)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(360, 360, 360)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -127,34 +126,35 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblRespuesta1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbPreguntas2, javax.swing.GroupLayout.Alignment.LEADING, 0, 300, Short.MAX_VALUE)
-                                    .addComponent(txtRespuesta2, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtRespuesta1, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cbPreguntas1, javax.swing.GroupLayout.Alignment.LEADING, 0, 300, Short.MAX_VALUE)))
-                                .addComponent(lblNombreDeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblRespuesta2, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(238, Short.MAX_VALUE))
+                            .addComponent(lblRespuesta1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRespuesta2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnBuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtRespuesta2)
+                                    .addComponent(cbPreguntas2, 0, 335, Short.MAX_VALUE)
+                                    .addComponent(txtLogin)
+                                    .addComponent(cbPreguntas1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtRespuesta1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblNombreDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(441, 441, 441)
+                        .addComponent(jLabel1)))
+                .addGap(230, 230, 230))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreDeUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuscarUser, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -201,88 +201,48 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
         userFind.setNombreLogin(txtLogin.getText().toLowerCase().trim());
         try {
             userNew = datosUsuario.leerID(userFind);
-
             int preg1 = cbPreguntas1.getSelectedIndex(); // Indica la pregunta escogida por el usuario
             int preg2 = cbPreguntas2.getSelectedIndex(); // Indica la pregunta escogida por el usuario
-
-//            System.out.println(preg1 + " " + " " + preg2);
-            String resp1 = txtRespuesta1.getText().toUpperCase();
-            String resp2 = txtRespuesta2.getText().toUpperCase();
-
-            boolean resp1Correcta = false;
-            boolean resp2Correcta = false;
-            boolean resp3Correcta = false;
-            int respuestas = 0;
+            String preg_1 = "" + preg1;
+            String preg_2 = "" + preg2;
+            boolean seguir = false; // Esta variable permite el cambio de la pantalla, false = No cambia
             
-
             if (userNew == null) { //Verfica si existe el usuario
                 lblNombreDeUsuario.setText("Usuario inexistente");
                 lblNombreDeUsuario.setVisible(true);
             }
-
-            if (userNew.getPreg2().endsWith("placeholder") && !userNew.getPreg1().endsWith("placeholder")) { // Solo respondio la primera pregunta
-                lblRespuesta1.setVisible(false);
-                txtRespuesta2.setEnabled(false);
-                
-                if (userNew.getPreg1().substring(1).equals(resp1)) {
-                    resp1Correcta = true;
-                    lblRespuesta1.setVisible(false);
-                } else {
-                    lblRespuesta1.setText("Respuesta incorrecta");
-                    lblRespuesta1.setVisible(true);
-                }
-            }
-            if (userNew.getPreg1().endsWith("placeholder") && !userNew.getPreg2().endsWith("placeholder")) { // Solo respondio la segunda pregunta
-                lblRespuesta2.setVisible(false);
-                txtRespuesta1.setEnabled(false);
-                        
-                if (userNew.getPreg2().substring(1).equals(resp2)) {
-                    resp2Correcta = true;
-                    lblRespuesta2.setVisible(false);
-                } else {
-                    lblRespuesta2.setText("Respuesta incorrecta");
-                    lblRespuesta2.setVisible(true);
-                }
-            }
-            if (!userNew.getPreg1().endsWith("placeholder") && !userNew.getPreg1().endsWith("placeholder")) { // Respondio ambas preguntas
+            if(preg1 != 0 && preg2 != 0){ // Las dos preguntas se respondieron
+                userNew.setPreg1(preg_1 + txtRespuesta1.getText().toUpperCase());
+                userNew.setPreg2(preg_2 + txtRespuesta2.getText().toUpperCase());
                 lblRespuesta1.setVisible(false);
                 lblRespuesta2.setVisible(false);
-                
-                if (userNew.getPreg1().substring(1).equals(resp1)) {
-                    respuestas = respuestas + 1;
-                    lblRespuesta1.setVisible(false);
-                } else {
-                    lblRespuesta1.setText("Respuesta incorrecta");
-                    lblRespuesta1.setVisible(true);
-                }
-                if (userNew.getPreg2().substring(1).equals(resp2)) {
-                    respuestas = respuestas + 1;
-                    lblRespuesta2.setVisible(false);
-
-                } else {
-                    lblRespuesta2.setText("Respuesta incorrecta");
-                    lblRespuesta2.setVisible(true);
-                }
-                if(respuestas == 2){
-                    resp3Correcta = true;
-                }
+                seguir = true;
             }
-
-            if (resp1Correcta) {
-                ValidacionBotonContinuar(userNew);
+            if(preg2 == 0 && preg1 != 0){ //Solo la primera pregunta se respondio
+                userNew.setPreg1(preg_1 + txtRespuesta1.getText().toUpperCase());
+                seguir = true;
             }
-            if (resp2Correcta) {
-                ValidacionBotonContinuar(userNew);
+            if(preg2 != 0 && preg1 == 0){ //Solo la segunda respuesta se respondio
+                userNew.setPreg2(preg_2 + txtRespuesta2.getText().toUpperCase());
+                seguir = true;
             }
-            if (resp3Correcta) {
-                ValidacionBotonContinuar(userNew);
+            if(preg1 == 0 && preg2 == 0){ //No se respondio ninguna pregunta, minimo tiene que ser 1
+                lblRespuesta1.setText("Escoja una pregunta para responder");
+                lblRespuesta2.setText("Escoja una pregunta para responder");
+                lblRespuesta1.setVisible(true);
+                lblRespuesta2.setVisible(true);
+                seguir = false; 
+            }
+            datosUsuario.modificar(userNew, userNew.getIdUsuario(), userNew.getNombreLogin());
+            if (seguir){
+                ValidacionBotonContinuar();
             }
         } catch (Exception ex) {
-            Logger.getLogger(VentanaHasOlvidadoTuContrasena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaEditarUsuarioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void btnBuscarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUserActionPerformed
         Usuario userFind = new Usuario();
         Usuario userNew = new Usuario();
         userFind.setNombreLogin(txtLogin.getText().toLowerCase().trim());
@@ -296,20 +256,11 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
                 lblNombreDeUsuario.setVisible(false);
                 txtRespuesta1.setEnabled(true);
                 txtRespuesta2.setEnabled(true);
-
-                if (!(userNew.getPreg1().substring(0, 1)).startsWith("p")) {
-                    cbPreguntas1.setSelectedIndex(Integer.parseInt(userNew.getPreg1().substring(0, 1)));
-                }
-                if (!(userNew.getPreg2().substring(0, 1)).startsWith("p")) {
-                    cbPreguntas2.setSelectedIndex(Integer.parseInt(userNew.getPreg2().substring(0, 1)));
-                }
-                cbPreguntas1.setEnabled(false);
-                cbPreguntas2.setEnabled(false);
             }
         } catch (Exception ex) {
-            Logger.getLogger(VentanaHasOlvidadoTuContrasena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaEditarUsuarioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_btnBuscarUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,28 +279,30 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaHasOlvidadoTuContrasenaPaso1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPreguntasSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaHasOlvidadoTuContrasenaPaso1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPreguntasSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaHasOlvidadoTuContrasenaPaso1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPreguntasSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaHasOlvidadoTuContrasenaPaso1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPreguntasSeguridad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaHasOlvidadoTuContrasenaPaso1().setVisible(true);
+                new VentanaPreguntasSeguridad().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarUser;
     private javax.swing.JButton btnContinuar;
     private javax.swing.JComboBox<String> cbPreguntas1;
     private javax.swing.JComboBox<String> cbPreguntas2;
@@ -367,7 +320,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtRespuesta2;
     // End of variables declaration//GEN-END:variables
 
-    public void ImagenComoFondo() { // 6 Líneas de Código 
+    public void ImagenComoFondo() {
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/imagenes/ImagenFondo.jpg"));
         JLabel fondo = new JLabel();
@@ -376,38 +329,17 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
         fondo.setBounds(0, 0, uno.getIconWidth(), uno.getIconHeight());
     }
 
-    public void LabelNoVisible() { // 3 Líneas de Código
+    public void LabelNoVisible() {
         lblNombreDeUsuario.setVisible(false);
         lblRespuesta1.setVisible(false);
         lblRespuesta2.setVisible(false);
     }
 
-    public void EspaciosVacios() { // 15 Líneas de Código
-        if (txtLogin.getText().isEmpty()) {
-            lblNombreDeUsuario.setVisible(true);
-            lblNombreDeUsuario.setText("Campo es vacio");
-        } else {
-            lblNombreDeUsuario.setVisible(false);
-        }
-        if (txtRespuesta1.getText().isEmpty()) {
-            lblRespuesta1.setVisible(true);
-            lblRespuesta1.setText("Campo es vacio");
-        } else {
-            lblRespuesta1.setVisible(false);
-        }
-        if (txtRespuesta2.getText().isEmpty()) {
-            lblRespuesta2.setVisible(true);
-            lblRespuesta2.setText("Campo es vacio");
-        } else {
-            lblRespuesta2.setVisible(false);
-        }
-    }
-
-    public void ValidacionBotonContinuar(Usuario user) {
-        VentanaHasOlvidadoTuContrasenaPaso2 ventanaHasOlvidadoTuContrasenaPaso2 = new VentanaHasOlvidadoTuContrasenaPaso2();
-        ventanaHasOlvidadoTuContrasenaPaso2.VentanaHasOlvidadoTuContrasenaPaso2(user);
-        ventanaHasOlvidadoTuContrasenaPaso2.setVisible(true);
+    public void ValidacionBotonContinuar() {
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+        ventanaPrincipal.setVisible(true);
         this.dispose();
+        
     }
 
     DatosUsuario datosUsuario = new DatosUsuario();
@@ -427,5 +359,4 @@ public class VentanaHasOlvidadoTuContrasenaPaso1 extends javax.swing.JFrame {
         cbPreguntas2.addItem("¿Cómo se llama tu mascota?");
         cbPreguntas2.addItem("¿Cuál es tu género de musica preferido?");
     }
-
 }

@@ -668,5 +668,6 @@ public class VentanaEliminarUsuarioAdministrador extends javax.swing.JFrame {
                 lista.get(i).getNombre(), lista.get(i).getApellido(), lista.get(i).getCedula()});
         }
         tblUsuarios.setModel(modeloTabla);
+        tblUsuarios.setAutoCreateRowSorter(true);
     }
 }

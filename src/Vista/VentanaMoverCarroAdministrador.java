@@ -1,12 +1,16 @@
 package Vista;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import Datos.DatosCarro;
+import Datos.DatosCarroPorTienda;
+import Datos.DatosTienda;
+import Modelo.Carro;
+import Modelo.CarroPorTienda;
+import Modelo.Tienda;
+import java.util.*;
+import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
 
@@ -14,6 +18,12 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         initComponents();
         this.ImagenComoFondo();
         this.setExtendedState(MAXIMIZED_BOTH);
+        try {
+            LlenarTbl();
+            LlenarCBTienda();
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaMoverCarroAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -24,13 +34,15 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCarros = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbTiendas = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
+        btnMoverCarro = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtTiendaActual = new javax.swing.JTextField();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -80,7 +92,7 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione el carro a mover:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCarros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -91,22 +103,36 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
                 "Modelo", "Año", "Marca", "Precio", "Color", "Tienda"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblCarros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCarrosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCarros);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tienda a la que se quiere mover el carro:");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel3.setText("Tienda a mover:");
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Especificar motivo de movimiento de carro:");
+        jLabel4.setText("Motivo por el cual se mueve el carro:");
 
         jScrollPane2.setViewportView(jTextPane1);
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jButton1.setText("Mover carro");
+        btnMoverCarro.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnMoverCarro.setText("Mover carro");
+        btnMoverCarro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoverCarroActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Tienda original:");
+
+        txtTiendaActual.setEditable(false);
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -340,7 +366,7 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnAnterior)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMoverCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,18 +374,23 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
                         .addGap(539, 539, 539)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(148, 148, 148)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2))))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTiendaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(124, 124, 124)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -370,22 +401,22 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTiendaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(btnAnterior))
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnterior, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMoverCarro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))))
         );
 
@@ -557,6 +588,44 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuConfiguracionMouseClicked
 
+    private void tblCarrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrosMouseClicked
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblCarros.getModel();
+        int rowIndex = tblCarros.getSelectedRow();
+
+        Carro car = new Carro();
+        System.out.println(modeloTabla.getValueAt(rowIndex, 8).toString());
+        System.out.println(modeloTabla.getValueAt(rowIndex, 0).toString());
+        car.setIdCarro(Integer.parseInt(modeloTabla.getValueAt(rowIndex, 0).toString()));
+
+        try {
+            txtTiendaActual.setText(datosCarro.buscarTienda(car));
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaMoverCarroAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_tblCarrosMouseClicked
+
+    private void btnMoverCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoverCarroActionPerformed
+        CarroPorTienda carroFind = new CarroPorTienda();
+        CarroPorTienda carroNew = new CarroPorTienda();
+
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblCarros.getModel();
+        int rowIndex = tblCarros.getSelectedRow();
+        carroFind.setIdCarro(Integer.parseInt(modeloTabla.getValueAt(rowIndex, 0).toString()));
+
+        try {
+            carroNew = datosCxT.leerID(carroFind);
+            carroNew.setIdTienda(100 + (cbTiendas.getSelectedIndex()));
+            
+            datosCxT.modificar(carroNew, carroNew.getIdCarro());
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaMoverCarroAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Crear archivo, o log, de movimientos de carros que se guarde en el proyecto
+    }//GEN-LAST:event_btnMoverCarroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -594,12 +663,13 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnMoverCarro;
+    private javax.swing.JComboBox<String> cbTiendas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -607,7 +677,6 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
@@ -634,6 +703,8 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenu menuTienda;
     private javax.swing.JMenu menuUsuario;
     private javax.swing.JMenuItem munuItemAgregarCarro;
+    private javax.swing.JTable tblCarros;
+    private javax.swing.JTextField txtTiendaActual;
     // End of variables declaration//GEN-END:variables
 
     public void ImagenComoFondo() { // 6 Líneas de Código 
@@ -665,5 +736,40 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         minutos = calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
+    }
+
+    DatosCarro datosCarro = new DatosCarro();
+    DatosTienda datosTienda = new DatosTienda();
+    DatosCarroPorTienda datosCxT = new DatosCarroPorTienda();
+
+    private void LlenarTbl() throws Exception {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Id", "Modelo", "Marca", "Tipo", "Año", "Estado", "Precio", "Color", "VIN"});
+
+        List<Carro> lista;
+        lista = datosCarro.listar();
+
+        for (int i = 0; i < lista.size(); i++) {
+            modeloTabla.addRow(new Object[]{lista.get(i).getIdCarro(), lista.get(i).getModelo(), lista.get(i).getMarca(), lista.get(i).getTipoCarro(),
+                lista.get(i).getAnno(), lista.get(i).getEstado(), lista.get(i).getPrecioBase(),
+                lista.get(i).getColor(), lista.get(i).getVin()});
+        }
+        tblCarros.setModel(modeloTabla);
+        tblCarros.setAutoCreateRowSorter(true);
+    }
+
+    private void LlenarCBTienda() {
+        try {
+            cbTiendas.addItem("Seleccione una tienda: ");
+
+            Vector<Tienda> listaTiendas;
+            listaTiendas = datosTienda.listarVector();
+
+            for (int i = 0; i < listaTiendas.size(); i++) {
+                cbTiendas.addItem((listaTiendas.get(i).getNombreTienda()));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerCarrosPorTiendaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

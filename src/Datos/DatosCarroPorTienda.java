@@ -33,7 +33,7 @@ public class DatosCarroPorTienda extends Conexion {
         ResultSet rs;
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("SELECT * FROM carroportienda WHERE carroTienda_idTienda = ?");
+            PreparedStatement st = this.getCnx().prepareStatement("SELECT * FROM carroportienda WHERE carroTienda_idCarro = ?");
             st.setInt(1, car.getIdCarro());
             rs = st.executeQuery();
 
@@ -107,12 +107,14 @@ public class DatosCarroPorTienda extends Conexion {
         return null;
     }
 
-    public void modificar(CarroPorTienda carT) throws Exception {
+    public void modificar(CarroPorTienda carT, int id) throws Exception {
         try {
             this.abrirCnx();
-            PreparedStatement st = this.getCnx().prepareStatement("UPDATE carroportienda SET carroTienda_idTienda = ?, carroTienda_idCarro = ?");
+            PreparedStatement st = this.getCnx().prepareStatement("UPDATE carroportienda \n" +
+                        "SET carroTienda_idTienda = ? \n" +
+                        "WHERE carroTienda_idCarro = "+id+"");
             st.setInt(1, carT.getIdTienda());
-            st.setInt(2, carT.getIdCarro());
+//            st.setInt(2, carT.getIdCarro());
 
             st.executeUpdate();
         } catch (ClassNotFoundException | SQLException e) {

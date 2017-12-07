@@ -1,6 +1,10 @@
 package Vista;
 
+import Datos.DatosUsuario;
+import Modelo.Usuario;
 import java.awt.JobAttributes;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -15,7 +19,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso2 extends javax.swing.JFrame {
         this.LabelNoVible();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,7 +57,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso2 extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("   Nueva contraseña:");
+        jLabel3.setText("   Repita nueva contraseña:");
 
         lblMensajeDeError1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblMensajeDeError1.setForeground(new java.awt.Color(255, 0, 0));
@@ -77,7 +81,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso2 extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +134,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso2 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(400, 400, 400)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,69 +192,7 @@ public class VentanaHasOlvidadoTuContrasenaPaso2 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaHasOlvidadoTuContrasenaPaso2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -287,13 +229,31 @@ public class VentanaHasOlvidadoTuContrasenaPaso2 extends javax.swing.JFrame {
         lblMensajeDeError2.setVisible(false);
     }
 
+    DatosUsuario datosUsuario = new DatosUsuario();
+    Usuario usuario = new Usuario();
+    
+    public void VentanaHasOlvidadoTuContrasenaPaso2(Usuario user){
+        setUsuario(user);
+    }
+
+    private void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     public void ValidarAmbosCamposIguales(){ // 11 Líneas de Código
         String nuevaContrasena1 = txtNuevaContrasena1.getText(), nuevaContrasena2 = txtNuevaContrasena2.getText();
         if(nuevaContrasena1.equals(nuevaContrasena2) && !txtNuevaContrasena1.getText().isEmpty() && !txtNuevaContrasena2.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Clave cambiada exitosamente");
-            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
-            ventanaPrincipal.setVisible(true);
-            this.dispose();
+            try {
+                usuario.setContrasena(nuevaContrasena2);
+                datosUsuario.modificar(usuario, usuario.getIdUsuario(), usuario.getNombreLogin());
+                
+                JOptionPane.showMessageDialog(null, "Clave cambiada exitosamente");
+                VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+                ventanaPrincipal.setVisible(true);
+                this.dispose();
+            } catch (Exception ex) {
+                Logger.getLogger(VentanaHasOlvidadoTuContrasenaPaso2.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             lblMensajeDeError1.setVisible(true);
             lblMensajeDeError1.setText("Campos son incorrectos");

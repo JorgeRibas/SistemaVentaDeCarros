@@ -14,8 +14,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         this.ImagenComoFondo();
-        lblMensajeDeError.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
+        lblMensajeDeError.setVisible(false);
 /* --------------------------- GUARGAR EL LOGIN DEL USUARIO CONECTADO PARA MOSTRAR EN SIGUIENTES PANTALLAS --------------------------- */
     }
 
@@ -163,7 +163,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 1098, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -177,7 +177,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(349, 349, 349)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,7 +188,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -278,26 +278,39 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             user = datosUser.leerID(userFind);
 
             String rol = user.getRol();
+            String preg1 = user.getPreg1();
+            String preg2 = user.getPreg2();
+            boolean usuarioNuevo = false;
+            
+            if(preg1.equals("0placeholder") && preg2.equals("0placeholder")){
+                usuarioNuevo = true;
+            }
 
-            if (user.getContrasena().equals(txtContrasena.getText())) {
+            if (user.getContrasena().equals(txtContrasena.getText()) && !usuarioNuevo) {
                 switch (rol) {
-                    case "A":
+                    case "A": //Ingresa administrador
                         VentanaIngresarAdministrador ventanaIngresarAdministrador = new VentanaIngresarAdministrador();
+                        ventanaIngresarAdministrador.session((user));
                         ventanaIngresarAdministrador.setVisible(true);
                         this.dispose();
                         break;
-
-                    case "V":
+                    case "V": //Ingresa vendedor
                         VentanaIngresarVendedor ventanaIngresarVendedor = new VentanaIngresarVendedor();
+                        ventanaIngresarVendedor.session(user);
                         ventanaIngresarVendedor.setVisible(true);
                         this.dispose();
                         break;
-
                     default:
                         break;
                 }
             } else {
-                MsjError();
+                if(!user.getContrasena().equals(txtContrasena.getText()) && usuarioNuevo){
+                    MsjError();
+                }
+                if(user.getContrasena().equals(txtContrasena.getText()) && usuarioNuevo){
+                    VentanaPreguntasSeguridad pregs = new VentanaPreguntasSeguridad();
+                    pregs.setVisible(true);
+                }
             }
         } catch (Exception ex) {
             Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);

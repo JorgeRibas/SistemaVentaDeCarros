@@ -27,8 +27,6 @@ public class VentanaEliminarTiendaAdministrador extends javax.swing.JFrame {
         }
     }
 
-    DatosTienda datosTienda = new DatosTienda();
-            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -617,6 +615,8 @@ public class VentanaEliminarTiendaAdministrador extends javax.swing.JFrame {
     private javax.swing.JTable tblTiendas;
     // End of variables declaration//GEN-END:variables
 
+    DatosTienda datosTienda = new DatosTienda();
+
     public void ImagenComoFondo() { // 6 Líneas de Código 
         ((JPanel) getContentPane()).setOpaque(false);
         ImageIcon uno = new ImageIcon(this.getClass().getResource("/imagenes/ImagenFondo.jpg"));
@@ -647,18 +647,19 @@ public class VentanaEliminarTiendaAdministrador extends javax.swing.JFrame {
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
     }
-    
+
     private void LlenarTbl() throws Exception {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.setColumnIdentifiers(new Object[]{"ID", "Nombre", "Dirección", "Provincia", "Espacios Disponibles", "Espacios Ocupados"});
 
         List<Tienda> lista;
         lista = datosTienda.listar();
-        
+
         for (int i = 0; i < lista.size(); i++) {
             modeloTabla.addRow(new Object[]{lista.get(i).getIdTienda(), lista.get(i).getNombreTienda(), lista.get(i).getDireccion(),
-                                lista.get(i).getProvincia(), lista.get(i).getEspaciosDisponibles(), lista.get(i).getEspaciosOcupados()});
+                lista.get(i).getProvincia(), lista.get(i).getEspaciosDisponibles(), lista.get(i).getEspaciosOcupados()});
         }
         tblTiendas.setModel(modeloTabla);
+        tblTiendas.setAutoCreateRowSorter(true);
     }
 }

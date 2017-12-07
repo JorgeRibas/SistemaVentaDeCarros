@@ -13,6 +13,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class VentanaVerUsuariosAdministrador extends javax.swing.JFrame {
 
@@ -25,30 +27,6 @@ public class VentanaVerUsuariosAdministrador extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(VentanaVerUsuariosAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    DatosUsuario dataUsuario = new DatosUsuario();
-    
-    private void LlenarTbl() throws Exception {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.setColumnIdentifiers(new Object[]{"Tienda", "Login", "Rol", "Nombre", "Apellido", "Cedula"});
-
-        List<Usuario> lista;
-        lista = dataUsuario.listar();
-        
-        String rol = "";
-        
-        for (int i = 0; i < lista.size(); i++) {
-            if(lista.get(i).getRol().equals("A")){
-                rol = "ADMINISTRADOR";
-            }else if(lista.get(i).getRol().equals("V")){
-                rol = "VENDEDOR";
-            }
-            
-            modeloTabla.addRow(new Object[]{lista.get(i).getIdTienda(), lista.get(i).getNombreLogin(),rol,
-                lista.get(i).getNombre(),lista.get(i).getApellido(),lista.get(i).getCedula()});
-        }
-        tblUsuarios.setModel(modeloTabla);
     }
     
     @SuppressWarnings("unchecked")
@@ -643,4 +621,33 @@ public class VentanaVerUsuariosAdministrador extends javax.swing.JFrame {
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
     }
+    
+    DatosUsuario dataUsuario = new DatosUsuario();
+    
+    private void LlenarTbl() throws Exception {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Tienda", "Login", "Rol", "Nombre", "Apellido", "Cedula"});
+
+        List<Usuario> lista;
+        lista = dataUsuario.listar();
+        
+        String rol = "";
+        
+        for (int i = 0; i < lista.size(); i++) {
+            if(lista.get(i).getRol().equals("A")){
+                rol = "ADMINISTRADOR";
+            }else if(lista.get(i).getRol().equals("V")){
+                rol = "VENDEDOR";
+            }
+            
+            modeloTabla.addRow(new Object[]{lista.get(i).getIdTienda(), lista.get(i).getNombreLogin(),rol,
+                lista.get(i).getNombre(),lista.get(i).getApellido(),lista.get(i).getCedula()});
+        }
+        tblUsuarios.setModel(modeloTabla);
+        tblUsuarios.setAutoCreateRowSorter(true);
+//        tblUsuarios.setRowSorter(rowSorter);
+    }
+    
+//    private TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(tblUsuarios.getModel());
+
 }

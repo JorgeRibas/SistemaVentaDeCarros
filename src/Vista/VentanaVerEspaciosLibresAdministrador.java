@@ -630,6 +630,7 @@ public class VentanaVerEspaciosLibresAdministrador extends javax.swing.JFrame {
             modeloTabla.addRow(new Object[]{lista.get(i).getNombreTienda(), lista.get(i).getEspaciosDisponibles(), lista.get(i).getEspaciosOcupados()});
         }
         tblTiendas.setModel(modeloTabla);
+        tblTiendas.setAutoCreateRowSorter(true);
     }
     
 }

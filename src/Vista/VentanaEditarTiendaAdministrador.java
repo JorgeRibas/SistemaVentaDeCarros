@@ -2,16 +2,9 @@ package Vista;
 
 import Datos.DatosTienda;
 import Modelo.Tienda;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import java.util.*;
+import java.util.logging.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaEditarTiendaAdministrador extends javax.swing.JFrame {
@@ -635,7 +628,8 @@ public class VentanaEditarTiendaAdministrador extends javax.swing.JFrame {
             
         } catch (Exception ex) {
             Logger.getLogger(VentanaEditarUsuarioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
-        }    }//GEN-LAST:event_btnEditarActionPerformed
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void tblTiendasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTiendasMouseClicked
         DefaultTableModel modeloTabla = (DefaultTableModel)tblTiendas.getModel();
@@ -779,6 +773,7 @@ public class VentanaEditarTiendaAdministrador extends javax.swing.JFrame {
                 lista.get(i).getProvincia(), lista.get(i).getEspaciosDisponibles(), lista.get(i).getEspaciosOcupados()});
         }
         tblTiendas.setModel(modeloTabla);
+        tblTiendas.setAutoCreateRowSorter(true);
     }
     
 }

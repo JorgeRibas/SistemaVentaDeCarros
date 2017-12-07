@@ -2,19 +2,11 @@ package Vista;
 
 import Datos.DatosTienda;
 import Datos.DatosUsuario;
-import Modelo.Tienda;
 import Modelo.Usuario;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
@@ -812,6 +804,7 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
                 lista.get(i).getNombre(),lista.get(i).getApellido(),lista.get(i).getCedula()});
         }
         tblUsuarios.setModel(modeloTabla);
+        tblUsuarios.setAutoCreateRowSorter(true);
     }
     
 }
