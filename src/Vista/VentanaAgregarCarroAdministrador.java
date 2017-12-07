@@ -755,7 +755,7 @@ public class VentanaAgregarCarroAdministrador extends javax.swing.JFrame {
             EspaciosVacios();
             if (espaciosB) {
                 datosCarro.registrar(carro);
-                
+                 
                 carroFind.setVin(VIN);
                 carroNew = datosCarro.leerVIN(carroFind);
                 car.setIdCarro(carroNew.getIdCarro());
