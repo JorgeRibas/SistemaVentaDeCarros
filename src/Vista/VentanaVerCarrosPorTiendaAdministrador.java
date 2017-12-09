@@ -18,6 +18,7 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         try {
             LlenarCBTienda();
+            lblTiendaVacia.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(VentanaVerCarrosPorTiendaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -32,6 +33,7 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCarros = new javax.swing.JTable();
         cbTiendas = new javax.swing.JComboBox<>();
+        lblTiendaVacia = new javax.swing.JLabel();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -100,6 +102,10 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
                 cbTiendasMouseClicked(evt);
             }
         });
+
+        lblTiendaVacia.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        lblTiendaVacia.setForeground(new java.awt.Color(204, 0, 0));
+        lblTiendaVacia.setText("ERROR TIENDA VACIA");
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -335,8 +341,9 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(147, 147, 147)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1060, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblTiendaVacia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1060, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(376, 376, 376)
                         .addComponent(jLabel2))
@@ -351,8 +358,10 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblTiendaVacia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                 .addComponent(btnAnterior))
         );
 
@@ -570,6 +579,7 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTiendaVacia;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -639,11 +649,18 @@ public class VentanaVerCarrosPorTiendaAdministrador extends javax.swing.JFrame {
         List<Carro> lista;
         lista = datosCarro.listarPorTienda(100 + (cbTiendas.getSelectedIndex()));
 
-        for (int i = 0; i < lista.size(); i++) {
-            modeloTabla.addRow(new Object[]{lista.get(i).getModelo(), lista.get(i).getMarca(), lista.get(i).getTipoCarro(),
-                lista.get(i).getAnno(), lista.get(i).getEstado(), lista.get(i).getPrecioBase(),
-                lista.get(i).getColor(), lista.get(i).getVin()});
+        if (lista.isEmpty()) {
+            lblTiendaVacia.setText("La tienda " + cbTiendas.getSelectedItem().toString() + " no tiene carros asignados a ella");
+            lblTiendaVacia.setVisible(true);
+        } else {
+            for (int i = 0; i < lista.size(); i++) {
+                modeloTabla.addRow(new Object[]{lista.get(i).getModelo(), lista.get(i).getMarca(), lista.get(i).getTipoCarro(),
+                    lista.get(i).getAnno(), lista.get(i).getEstado(), lista.get(i).getPrecioBase(),
+                    lista.get(i).getColor(), lista.get(i).getVin()});
+            }            
+            lblTiendaVacia.setVisible(false);
         }
+
         tblCarros.setModel(modeloTabla);
         tblCarros.setAutoCreateRowSorter(true);
     }
