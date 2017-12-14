@@ -8,8 +8,7 @@ import Modelo.CarroPorTienda;
 import Modelo.Tienda;
 import java.util.*;
 import javax.swing.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import javax.swing.table.DefaultTableModel;
 
 public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
@@ -21,6 +20,7 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         try {
             LlenarTbl();
             LlenarCBTienda();
+            msjError.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(VentanaMoverCarroAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -39,10 +39,11 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         cbTiendas = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        txtMotivo = new javax.swing.JTextPane();
         btnMoverCarro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtTiendaActual = new javax.swing.JTextField();
+        msjError = new javax.swing.JLabel();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -118,7 +119,7 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Motivo por el cual se mueve el carro:");
 
-        jScrollPane2.setViewportView(jTextPane1);
+        jScrollPane2.setViewportView(txtMotivo);
 
         btnMoverCarro.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btnMoverCarro.setText("Mover carro");
@@ -133,6 +134,10 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         jLabel5.setText("Tienda original:");
 
         txtTiendaActual.setEditable(false);
+
+        msjError.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        msjError.setForeground(new java.awt.Color(255, 0, 0));
+        msjError.setText("Msj error");
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -377,8 +382,13 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
                         .addGap(148, 148, 148)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(msjError, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(117, 117, 117)))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,7 +420,10 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
                     .addComponent(txtTiendaActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(27, 27, 27)
+                        .addComponent(msjError, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -615,10 +628,35 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         carroFind.setIdCarro(Integer.parseInt(modeloTabla.getValueAt(rowIndex, 0).toString()));
 
         try {
-            carroNew = datosCxT.leerID(carroFind);
-            carroNew.setIdTienda(100 + (cbTiendas.getSelectedIndex()));
+            int espaciosDisp = 0;
+            int espaciosOcup = 0;
+            Tienda tiendaFind = new Tienda();
+            Tienda tiendaNew = new Tienda();
+            tiendaFind.setNombreTienda(txtTiendaActual.getText());
+            tiendaNew = datosTienda.leerNombre(tiendaFind);
+            espaciosDisp = tiendaNew.getEspaciosDisponibles();
+            espaciosOcup = tiendaNew.getEspaciosOcupados();
             
-            datosCxT.modificar(carroNew, carroNew.getIdCarro());
+            if(!txtMotivo.getText().isEmpty() && !txtTiendaActual.getText().isEmpty() && cbTiendas.getSelectedIndex() > 0){
+                if(espaciosOcup > 0){
+                    carroNew = datosCxT.leerID(carroFind);
+                    carroNew.setIdTienda(100 + (cbTiendas.getSelectedIndex()));
+
+                    datosCxT.modificar(carroNew, carroNew.getIdCarro());
+
+                    txtTiendaActual.setText("");
+                    cbTiendas.setSelectedIndex(0);
+                    txtMotivo.setText("");
+                    LlenarTbl();
+                    msjError.setVisible(false);
+                }else{
+                    msjError.setText("Esa tienda no tiene espacios disponibles");
+                    msjError.setVisible(true);
+                }
+            } else {
+                msjError.setText("No se pueden dejar espacios en blanco");
+                msjError.setVisible(true);
+            }
         } catch (Exception ex) {
             Logger.getLogger(VentanaMoverCarroAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -626,9 +664,6 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
         //Crear archivo, o log, de movimientos de carros que se guarde en el proyecto
     }//GEN-LAST:event_btnMoverCarroActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -677,7 +712,6 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -702,8 +736,10 @@ public class VentanaMoverCarroAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemVerUsuarios;
     private javax.swing.JMenu menuTienda;
     private javax.swing.JMenu menuUsuario;
+    private javax.swing.JLabel msjError;
     private javax.swing.JMenuItem munuItemAgregarCarro;
     private javax.swing.JTable tblCarros;
+    private javax.swing.JTextPane txtMotivo;
     private javax.swing.JTextField txtTiendaActual;
     // End of variables declaration//GEN-END:variables
 
