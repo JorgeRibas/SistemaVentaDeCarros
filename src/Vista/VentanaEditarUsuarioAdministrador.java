@@ -2,6 +2,7 @@ package Vista;
 
 import Datos.DatosTienda;
 import Datos.DatosUsuario;
+import Modelo.Tienda;
 import Modelo.Usuario;
 import java.util.*;
 import java.util.logging.Level;
@@ -16,8 +17,10 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
         this.ImagenComoFondo();
         this.setExtendedState(MAXIMIZED_BOTH);
         try {
+            LabelNoVisble();
             LlenarTbl();
-//            LlenarCBTienda();
+            LlenarCBTienda();
+            LlenarCBRol();
         } catch (Exception ex) {
             Logger.getLogger(VentanaEditarUsuarioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -41,12 +44,18 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
         txtNombre = new javax.swing.JFormattedTextField();
         txtApellidos = new javax.swing.JFormattedTextField();
         txtCedula = new javax.swing.JFormattedTextField();
-        txtRol = new javax.swing.JFormattedTextField();
         btnEditarUsuario = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtTienda = new javax.swing.JFormattedTextField();
-        txtPasswd = new javax.swing.JPasswordField();
+        txtContrasena = new javax.swing.JPasswordField();
         txtNombreLogin = new javax.swing.JFormattedTextField();
+        lblMensajeNombreCompleto = new javax.swing.JLabel();
+        lblMensajeContrasena = new javax.swing.JLabel();
+        lblMensajeTienda = new javax.swing.JLabel();
+        lblMensajeRol = new javax.swing.JLabel();
+        lblMensajeCedula = new javax.swing.JLabel();
+        lblMensajeApellidos = new javax.swing.JLabel();
+        cbRol = new javax.swing.JComboBox<>();
+        cbTiendas = new javax.swing.JComboBox<>();
         jMenuBar3 = new javax.swing.JMenuBar();
         menuCerrarSesion = new javax.swing.JMenu();
         menuCambiarIdioma = new javax.swing.JMenu();
@@ -126,7 +135,7 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Contraseña temporal:");
+        jLabel6.setText("Contraseña:");
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,7 +146,7 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
         jLabel8.setText("Rol:");
 
         btnEditarUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        btnEditarUsuario.setText("Editar usuario");
+        btnEditarUsuario.setText("Guardar Cambios");
         btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarUsuarioActionPerformed(evt);
@@ -146,9 +155,33 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Cedula:");
+        jLabel9.setText("Cédula:");
 
         txtNombreLogin.setEditable(false);
+
+        lblMensajeNombreCompleto.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeNombreCompleto.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeNombreCompleto.setText("Mensaje de error");
+
+        lblMensajeContrasena.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeContrasena.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeContrasena.setText("Mensaje de error");
+
+        lblMensajeTienda.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeTienda.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeTienda.setText("Mensaje de error");
+
+        lblMensajeRol.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeRol.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeRol.setText("Mensaje de error");
+
+        lblMensajeCedula.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeCedula.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeCedula.setText("Mensaje de error");
+
+        lblMensajeApellidos.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblMensajeApellidos.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensajeApellidos.setText("Mensaje de error");
 
         menuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonSalir.png"))); // NOI18N
         menuCerrarSesion.setText("Cerrar sesión");
@@ -379,52 +412,60 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btnAnterior)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(452, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(518, 518, 518))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnterior)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(44, 44, 44))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPasswd, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                                    .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(44, 44, 44)
+                                .addComponent(txtNombreLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(48, 48, 48)
-                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel7))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtRol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtTienda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(208, 208, 208)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(txtContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                                    .addComponent(txtApellidos, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                                            .addComponent(lblMensajeApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblMensajeNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblMensajeContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(159, 159, 159)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addGap(30, 30, 30)
+                                                .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addGap(63, 63, 63)
+                                                .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(lblMensajeCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(lblMensajeRol, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblMensajeTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,39 +475,49 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9))
-                        .addGap(7, 7, 7))
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addComponent(lblMensajeCedula)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(txtTienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8)
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblMensajeApellidos)
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbTiendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblMensajeTienda)
+                                    .addComponent(lblMensajeContrasena)))
+                            .addComponent(lblMensajeRol))
                         .addGap(37, 37, 37)
-                        .addComponent(txtNombreLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombreLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addComponent(btnAnterior))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMensajeNombreCompleto)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -638,36 +689,43 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_menuConfiguracionMouseClicked
 
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
-        Usuario userFind = new Usuario();
-        Usuario userNew = new Usuario();
-        userFind.setNombreLogin(txtNombreLogin.getText());
+        Usuario user = new Usuario();
+        user.setNombreLogin(txtNombreLogin.getText());
         try {
-            userNew = datosUsuario.leerID(userFind);
-            userNew.setIdTienda(Integer.parseInt(txtTienda.getText()));
-            userNew.setRol(txtRol.getText());
-            userNew.setNombre(txtNombre.getText());
-            userNew.setApellido(txtApellidos.getText());
-            userNew.setCedula(txtCedula.getText());
-            userNew.setContrasena(txtPasswd.getText());
-            
-            datosUsuario.modificar(userNew, userNew.getIdUsuario(), userNew.getNombreLogin());
-            
+            EspaciosVacios();
+            if (espaciosB) {
+                user = datosUsuario.leerID(user);
+                user.setIdTienda(100 + cbTiendas.getSelectedIndex());
+                user.setRol(cbRol.getSelectedItem().toString().substring(0, 1));
+                user.setNombre(txtNombre.getText());
+                user.setApellido(txtApellidos.getText());
+                user.setCedula(txtCedula.getText());
+                user.setContrasena(txtContrasena.getText());
+
+                if (datosUsuario.leerCedula(user) == null) {
+                    datosUsuario.modificar(user, user.getIdUsuario(), user.getNombreLogin());
+                } else {
+                    if(datosUsuario.leerCedula(user) == user){
+                        datosUsuario.modificar(user, user.getIdUsuario(), user.getNombreLogin());
+                    } else {
+                        lblMensajeCedula.setText("Un usuario ya fue creado con este número de cédula");
+                        lblMensajeCedula.setVisible(true);
+                    }
+                }
+            }
         } catch (Exception ex) {
             Logger.getLogger(VentanaEditarUsuarioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     private void tblUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuariosMouseClicked
-        DefaultTableModel modeloTabla = (DefaultTableModel)tblUsuarios.getModel();
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblUsuarios.getModel();
         int rowIndex = tblUsuarios.getSelectedRow();
-        
-        txtTienda.setText       (modeloTabla.getValueAt(rowIndex, 0).toString());
-        txtNombreLogin.setText  (modeloTabla.getValueAt(rowIndex, 1).toString());
-        txtRol.setText          (modeloTabla.getValueAt(rowIndex, 2).toString());
-        txtNombre.setText       (modeloTabla.getValueAt(rowIndex, 3).toString());
-        txtApellidos.setText    (modeloTabla.getValueAt(rowIndex, 4).toString());
-        txtCedula.setText       (modeloTabla.getValueAt(rowIndex, 5).toString());
-//        txtContrasena.setText   (modeloTabla.getValueAt(rowIndex, ).toString());
+
+        txtNombreLogin.setText(modeloTabla.getValueAt(rowIndex, 1).toString());
+        txtNombre.setText(modeloTabla.getValueAt(rowIndex, 3).toString());
+        txtApellidos.setText(modeloTabla.getValueAt(rowIndex, 4).toString());
+        txtCedula.setText(modeloTabla.getValueAt(rowIndex, 5).toString());
     }//GEN-LAST:event_tblUsuariosMouseClicked
 
     /**
@@ -709,6 +767,8 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnEditarUsuario;
+    private javax.swing.JComboBox<String> cbRol;
+    private javax.swing.JComboBox<String> cbTiendas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -723,6 +783,12 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMensajeApellidos;
+    private javax.swing.JLabel lblMensajeCedula;
+    private javax.swing.JLabel lblMensajeContrasena;
+    private javax.swing.JLabel lblMensajeNombreCompleto;
+    private javax.swing.JLabel lblMensajeRol;
+    private javax.swing.JLabel lblMensajeTienda;
     private javax.swing.JMenu menuCambiarIdioma;
     private javax.swing.JMenu menuCarro;
     private javax.swing.JMenu menuCerrarSesion;
@@ -751,11 +817,9 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JFormattedTextField txtApellidos;
     private javax.swing.JFormattedTextField txtCedula;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JFormattedTextField txtNombre;
     private javax.swing.JFormattedTextField txtNombreLogin;
-    private javax.swing.JPasswordField txtPasswd;
-    private javax.swing.JFormattedTextField txtRol;
-    private javax.swing.JFormattedTextField txtTienda;
     // End of variables declaration//GEN-END:variables
 
     public void ImagenComoFondo() { // 6 Líneas de Código 
@@ -788,23 +852,103 @@ public class VentanaEditarUsuarioAdministrador extends javax.swing.JFrame {
         segundos = calendario.get(Calendar.SECOND);
         JOptionPane.showMessageDialog(null, "Hora de salida: " + hora + ":" + minutos + ":" + segundos);
     }
-    
+
     DatosUsuario datosUsuario = new DatosUsuario();
-    DatosTienda  datosTienda = new DatosTienda();
-    
+    DatosTienda datosTienda = new DatosTienda();
+
+    public void LabelNoVisble() {
+        lblMensajeApellidos.setVisible(false);
+        lblMensajeCedula.setVisible(false);
+        lblMensajeContrasena.setVisible(false);
+        lblMensajeNombreCompleto.setVisible(false);
+        lblMensajeRol.setVisible(false);
+        lblMensajeTienda.setVisible(false);
+    }
+
     private void LlenarTbl() throws Exception {
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.setColumnIdentifiers(new Object[]{"Tienda", "Login", "Rol", "Nombre", "Apellido", "Cedula"});
+        modeloTabla.setColumnIdentifiers(new Object[]{"Tienda", "Login", "Rol", "Nombre", "Apellido", "Cedula", "Id"});
 
         List<Usuario> lista;
         lista = datosUsuario.listar();
         for (int i = 0; i < lista.size(); i++) {
-            
-            modeloTabla.addRow(new Object[]{lista.get(i).getIdTienda(), lista.get(i).getNombreLogin(),lista.get(i).getRol(),
-                lista.get(i).getNombre(),lista.get(i).getApellido(),lista.get(i).getCedula()});
+
+            modeloTabla.addRow(new Object[]{lista.get(i).getIdTienda(), lista.get(i).getNombreLogin(), lista.get(i).getRol(),
+                lista.get(i).getNombre(), lista.get(i).getApellido(), lista.get(i).getCedula(), lista.get(i).getIdUsuario()});
         }
         tblUsuarios.setModel(modeloTabla);
         tblUsuarios.setAutoCreateRowSorter(true);
     }
-    
+
+    private void LlenarCBTienda() {
+        try {
+            cbTiendas.addItem("Seleccione una tienda: ");
+
+            Vector<Tienda> listaTiendas;
+            listaTiendas = datosTienda.listarVector();
+
+            for (int i = 0; i < listaTiendas.size(); i++) {
+                cbTiendas.addItem((listaTiendas.get(i).getNombreTienda()));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VentanaVerCarrosPorTiendaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void LlenarCBRol() {
+        cbRol.addItem("Seleccione el rol: ");
+        cbRol.addItem("ADMINISTRADOR");
+        cbRol.addItem("VENDEDOR");
+    }
+
+    boolean espaciosB = false;
+
+    public void EspaciosVacios() {
+        int espacios = 0;
+
+        if (txtNombre.getText().isEmpty()) {
+            lblMensajeNombreCompleto.setVisible(true);
+            lblMensajeNombreCompleto.setText("Campo no puede quedar vacio");
+            espacios = espacios + 1;
+        } else {
+            lblMensajeNombreCompleto.setVisible(false);
+        }
+        if (txtApellidos.getText().isEmpty()) {
+            lblMensajeApellidos.setVisible(true);
+            lblMensajeApellidos.setText("Campo no puede quedar vacio");
+            espacios = espacios + 1;
+        } else {
+            lblMensajeApellidos.setVisible(false);
+        }
+        if (txtContrasena.getText().isEmpty()) {
+            lblMensajeContrasena.setVisible(true);
+            lblMensajeContrasena.setText("Campo no puede quedar vacio");
+            espacios = espacios + 1;
+        } else {
+            lblMensajeContrasena.setVisible(false);
+        }
+        if (txtCedula.getText().isEmpty()) {
+            lblMensajeCedula.setVisible(true);
+            lblMensajeCedula.setText("Campo no puede quedar vacio");
+            espacios = espacios + 1;
+        } else {
+            lblMensajeCedula.setVisible(false);
+        }
+        if (cbRol.getSelectedIndex() == 0) {
+            lblMensajeRol.setVisible(true);
+            lblMensajeRol.setText("Por favor escoger un rol");
+            espacios = espacios + 1;
+        } else {
+            lblMensajeRol.setVisible(false);
+        }
+        if (cbTiendas.getSelectedIndex() == 0) {
+            lblMensajeTienda.setVisible(true);
+            lblMensajeTienda.setText("Por favor asignarle una tienda");
+            espacios = espacios + 1;
+        } else {
+            lblMensajeTienda.setVisible(false);
+        }
+
+        espaciosB = espacios <= 0; // if espacios <= 0, espaciosB = true;
+    }
 }
